@@ -1,4 +1,5 @@
-import React, { useState,useEffect } from "react";
+import React from "react";
+import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styling.css";
 import { Container, Row, Col,  Form } from "react-bootstrap";
@@ -9,12 +10,13 @@ import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
 import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SchoolIcon from '@mui/icons-material/School';
-import { useNavigate ,useLocation} from "react-router-dom";
-function SignIn() {
-  const [redirecting, setRedirecting] = useState(false);
-  const navigate = useNavigate();
+import { useNavigate,useLocation } from "react-router-dom";
+
+function SignInRector() {
   const location=useLocation();
   const path=location.pathname;
+  const [redirecting, setRedirecting] = useState(false);
+  const navigate = useNavigate();
   const [showIcons, setShowIcons] = useState(false);
   const handleRedirect = (path) => {
     setRedirecting(true);
@@ -34,7 +36,7 @@ function SignIn() {
   }, []);
   return (
     <>
-        
+       
       <div className="outer-container">
         <Container className="login-container">
           <Row>
@@ -50,18 +52,19 @@ function SignIn() {
                 </Form.Group>
                 <Form.Group>
                   {/* Centered div with large anchor tags */}
-                  <div className="d-flex justify-content-center mb-1"  style={{marginTop:"-30px"}}>
+                  
+                  <div className="d-flex justify-content-center mb-1" style={{marginTop:"-30px"}}>
                   {showIcons && (
                     <>
-                  <Link to="/signIn/rector" className="icon-link" onClick={() => handleRedirect("/signIn/rector")} style={{marginRight: "10px",borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", height: "80px", width: "80px",  transition: "backgroundColor 0.3s", textDecoration: "none"}}><AccountCircleIcon style={{height:"60px",width:"60px",color:"#89817f",opacity: 1, transition: "opacity 1s ease",transition: "transform 0.5s ease"}}
+                  <Link to="/signIn/rector" className="icon-link" onClick={() => handleRedirect("/signIn/rector")} style={{marginRight: "10px",borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", height: "80px", width: "80px",  transition: "backgroundColor 0.3s", textDecoration: "none"}}><AccountCircleIcon style={{height:"60px",width:"60px",color:path==="/signIn/rector"?"#836FFF":"#89817f", opacity: 1, transition: "opacity 1s ease",transition: "transform 0.5s ease"}}
                  /> </Link>
-                  <Link to="/signIn/student" aria-current="page" className="icon-link" onClick={() => handleRedirect("/signIn/student")} style={{ backgroundColor:path==="/signIn/student"?"#836FFF":"#89817f" , marginLeft:"-5px",opacity: 1, transition: "opacity 1s ease",borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", height: "52px", width: "52px" ,marginTop:'15px',transition: "backgroundColor 0.3s", textDecoration: "none",transition: "transform 0.5s ease"}} 
-                 >
+                  <Link to="/signIn/student" aria-current="page" className="icon-link" onClick={() => handleRedirect("/signIn/student")} style={{backgroundColor:"#89817f", opacity: 1, transition: "opacity 1s ease" ,marginLeft:"-5px",borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", height: "52px", width: "52px" ,marginTop:'15px',transition: "backgroundColor 0.3s",transition: "transform 0.5s ease", textDecoration: "none"}}  >
                     <   SchoolIcon style={{ height: "38px", width: "38px", color: "white" }} />
                     </Link>
                     </>
                   )}
                   </div>
+                 
                 </Form.Group>
                 <Form.Group className="mb-3 mt-2" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
@@ -113,7 +116,7 @@ function SignIn() {
                     Don't have an account? 
                     {' '}
                     <Link
-                      to={"/signUp/student"}
+                      to={"/signUp/rector"}
                       style={{
                         marginLeft: "3px",
                         textDecoration: "none",
@@ -133,8 +136,10 @@ function SignIn() {
           </Row>
         </Container>
       </div>
+        {/* */}
+      {/* )} */}
     </>
   );
 };
 
-export default SignIn;
+export default SignInRector;

@@ -10,10 +10,15 @@ import SignIn from "./routers/Sign_in";
 import StudentHostel from "./routers/Student_hostel";
 import StudentMess from "./routers/Student_Mess";
 import StudentSignUp from "./routers/Student_Sign_Up";
+import SignInRector from "./routers/sign_in_rector";
+import Profile from "./routers/Profile";
+import ProfileEdit from "./routers/ProfileEdit";
+import RectorProfile from "./routers/RectorProfile";
+import RectorProfileEdit from "./routers/RectorProfileEdit";
 function App() {
   return (
    
-    <div className="container">
+    <div >
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -22,10 +27,15 @@ function App() {
           <Route path="/hostel/:id/rector" element={<RectorHostel />} />
           <Route path="/mess/:id/rector" element={<RectorMess />} />
           <Route path="/signUp/rector" element={<RectorSignUp />} />
-          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/signIn/student" element={<SignIn />} />
+          <Route path="/signIn/rector" element={<SignInRector />} />
           <Route path="/hostel/:id/student" element={<StudentHostel />} />
           <Route path="/mess/:id/student" element={<StudentMess />} />
           <Route path="/signUp/student" element={<StudentSignUp />} />
+          <Route path="/student/:id/profile" element={<Profile/>} />
+          <Route path="/student/:id/profile/edit" element={<ProfileEdit/>} />
+          <Route path="/rector/:id/profile/edit" element={<RectorProfileEdit/>} />
+          <Route path="/rector/:id/profile" element={<RectorProfile/>} />
         </Routes>
       </Router>
     </div>
