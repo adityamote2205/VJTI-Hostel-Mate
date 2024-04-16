@@ -10,8 +10,9 @@ import SignIn from "./routers/Sign_in";
 import StudentHostel from "./routers/Student_hostel";
 import StudentMess from "./routers/Student_Mess";
 import StudentSignUp from "./routers/Student_Sign_Up";
-import User_Profile from "./routers/User_Profile";
+import Profile from "./routers/Profile";
 import Rector_Home from "./routers/Rector_Home";
+import RectorProfile from "./routers/RectorProfile";
 function App() {
   return (
    
@@ -24,12 +25,14 @@ function App() {
           <Route path="/hostel/:id/rector" element={<RectorHostel />} />
           <Route path="/mess/:id/rector" element={<RectorMess />} />
           <Route path="/signUp/rector" element={<RectorSignUp />} />
-          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/signIn/student" element={<SignIn />} />
           <Route path="/hostel/:id/student" element={<StudentHostel />} />
           <Route path="/mess/:id/student" element={<StudentMess />} />
           <Route path="/signUp/student" element={<StudentSignUp />} />
-          <Route path="/userProfile" element={<User_Profile/>} />
+          <Route path="student/:id/profile" element={<Profile/>} />
           <Route path="/rector/home" element={<Rector_Home/>} />
+          <Route path="/rector/:id/profile" element={<RectorProfile/>} />
+
         </Routes>
       </Router>
    

@@ -1,0 +1,15 @@
+/* styles.css */
+
+/* Define the animation */
+@keyframes AnimationName {
+    0% { background-position: 0% 51%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 51%; }
+}
+
+/* Apply the animation to a separate class */
+.slow-animation {
+    background: linear-gradient(60deg, #836fff, #211951, #bdbbcd);
+    background-size: 600% 600%;
+    animation: AnimationName 60s ease infinite; /* Changed duration from 29s to 60s */
+}
