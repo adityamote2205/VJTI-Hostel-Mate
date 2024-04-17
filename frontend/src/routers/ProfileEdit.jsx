@@ -3,6 +3,8 @@ import { NativeSelect } from "@mui/material";
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import {useNavigate} from "react-router-dom";
+import BrandComponent from "../components/BrandComponent";
+import Footer from "../components/Footer";
 function ProfileEdit(){
     const navigate=useNavigate();
       const[name,setName]=useState("");
@@ -40,7 +42,7 @@ function ProfileEdit(){
           }
   
           if (!room) {
-              errors.room = "Room is required";
+              errors.room = "Room no is required";
           }
   
           // If there are errors, set them and return
@@ -54,9 +56,18 @@ function ProfileEdit(){
       }
      
     return(
+   <>
+    <nav style={{ backgroundColor: '#F0F3FF', borderBottom: '1px solid #dee2e6', padding: '10px 0' }}>
+                <div className="container-fluid d-flex justify-content-between align-items-center">
+                    <BrandComponent />
+                    
+                </div>
+            </nav>
         <div className="container p-5 ">
+         
         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-5">
         <div className="card h-150 shadow ">
+        <form action="#!">
           <div className="card-body">
             <div className="row gutters">
               <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -64,22 +75,23 @@ function ProfileEdit(){
               </div>
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div className="form-group">
-                  <label htmlFor="fullName">Full Name</label>
-                  <Input type="text" className="form-control" id="fullName" value={name} onChange={(e)=>{setName(e.target.value)}}placeholder="Enter full name"  style={{height:"35px",border:"none",color:"black"}}/>
+                  <label htmlFor="fullName">Full Name<span class="text-danger">*</span></label>
+                  <Input type="text" className="form-control"  onChange={(e)=>{setName(e.target.value)}}placeholder="Enter full name"  style={{height:"35px",border:"none",color:"black"}} required value={name} />
                   {errors.name && <div className="text-danger">{errors.name}</div>}
                 </div>
               </div>
+              
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div className="form-group">
-                  <label htmlFor="eMail">Email</label>
-                  <Input type="email" className="form-control" id="eMail" value={email} onChange={(e)=>{setEmail(e.target.value)}}  placeholder="Enter email ID" style={{height:"35px",border:"none",color:"black"}}/>
+                  <label htmlFor="eMail">Email<span class="text-danger">*</span></label>
+                  <Input type="email" className="form-control" id="eMail" value={email} onChange={(e)=>{setEmail(e.target.value)}}  placeholder="Enter email ID" style={{height:"35px",border:"none",color:"black"}} required/>
                   {errors.email && <div className="text-danger">{errors.email}</div>}
                 </div>
               </div>
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
                 <div className="form-group">
-                <label htmlFor="year" >Year</label>
-                <NativeSelect name="year" className="col=md-12" style={{ width: '100%' }} value={year} onChange={(e)=>{setYear(e.target.value)}}  inputProps={{ style: { color: '#A0A0A0',paddingLeft:"10px" } }}>
+                <label htmlFor="year" >Year<span class="text-danger">*</span></label>
+                <NativeSelect name="year" className="col=md-12" style={{ width: '100%' }} value={year} onChange={(e)=>{setYear(e.target.value)}}  inputProps={{ style: { color: '#A0A0A0',paddingLeft:"10px" } }} required>
                    <option value=""  >Update Year</option>
                    <option value="firstYear">I</option>
                   <option value="secondYear">II</option>
@@ -91,8 +103,8 @@ function ProfileEdit(){
               </div>
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
               <div className="form-group">
-                <label htmlFor="branch">Branch</label>
-                <NativeSelect name="year" className="col=md-12" style={{ width: '100%' }} value={branch} onChange={(e)=>{setBranch(e.target.value)}} inputProps={{ style: { color: '#A0A0A0',paddingLeft:"10px" } }}>
+                <label htmlFor="branch">Branch<span class="text-danger">*</span></label>
+                <NativeSelect name="year" className="col=md-12" style={{ width: '100%' }} value={branch} onChange={(e)=>{setBranch(e.target.value)}} inputProps={{ style: { color: '#A0A0A0',paddingLeft:"10px" } }} required>
                 <option value="">Update Branch</option>
                         <option value="cs">Computer Science</option>
                         <option value="it">Information Technology</option>
@@ -108,8 +120,8 @@ function ProfileEdit(){
               </div>
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
               <div className="form-group">
-                <label htmlFor="block">Block</label>
-                <NativeSelect name="block" className="col=md-12" style={{ width: '100%' }} value={block} onChange={(e)=>{setBlock(e.target.value)}} inputProps={{ style: { color: '#A0A0A0',paddingLeft:"10px" } }}>
+                <label htmlFor="block">Block<span class="text-danger">*</span></label>
+                <NativeSelect name="block" className="col=md-12" style={{ width: '100%' }} value={block} onChange={(e)=>{setBlock(e.target.value)}} inputProps={{ style: { color: '#A0A0A0',paddingLeft:"10px" } }} required>
                 <option value="">Update Block</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
@@ -122,8 +134,8 @@ function ProfileEdit(){
               </div>
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
               <div className="form-group">
-                <label htmlFor="roomNo">Room No</label>
-                <Input type="text" className="form-control" id="roomNo" value={room} onChange={(e)=>{setRoom(e.target.value)}} placeholder="Enter Room No" style={{height:"35px",border:"none",color:"black"}}/>
+                <label htmlFor="roomNo">Room No<span class="text-danger">*</span></label>
+                <Input type="text" className="form-control" id="roomNo" value={room} onChange={(e)=>{setRoom(e.target.value)}} placeholder="Enter Room No" style={{height:"35px",border:"none",color:"black"}} required/>
                 {errors.room && <div className="text-danger">{errors.room}</div>}
                 </div>
               </div>
@@ -138,9 +150,12 @@ function ProfileEdit(){
               </div>
             </div>
           </div>
+        </form>
         </div>
       </div>
       </div>
+      <Footer/>
+      </>
     );
 };
 export default ProfileEdit;

@@ -3,6 +3,8 @@ import { NativeSelect } from "@mui/material";
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import {useNavigate} from "react-router-dom";
+import BrandComponent from "../components/BrandComponent";
+import Footer from "../components/Footer";
 function RectorProfileEdit(){
     const navigate=useNavigate();
       const[name,setName]=useState("");
@@ -38,6 +40,14 @@ function RectorProfileEdit(){
       }
      
     return(
+      <>
+      <nav style={{ backgroundColor: '#F0F3FF', borderBottom: '1px solid #dee2e6', padding: '10px 0' }}>
+                <div className="container-fluid d-flex justify-content-between align-items-center">
+                    <BrandComponent />
+                    
+                </div>
+            </nav>
+      
         <div className="container  ">
         <div className="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 " style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' ,marginLeft:"100px",marginTop:"-50px"}}>
         <div className="card h-150 shadow ">
@@ -88,6 +98,8 @@ function RectorProfileEdit(){
         </div>
       </div>
       </div>
+      <Footer/>
+      </>
     );
 };
 export default RectorProfileEdit;
