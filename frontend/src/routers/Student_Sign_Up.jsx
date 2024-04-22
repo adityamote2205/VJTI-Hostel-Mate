@@ -111,6 +111,7 @@ function StudentSignUp() {
                         <option value="C">C</option>
                         <option value="D">D</option>
                         <option value="E">E</option>
+                        <option value="F">PG Boys' Hostel</option>
                       </Form.Control>
                     </Form.Group>
                   </Col>
