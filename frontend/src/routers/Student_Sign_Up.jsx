@@ -23,6 +23,13 @@ function StudentSignUp() {
     setErrorMessage("Please fill in all fields.");
     return;
   }
+  const collegeEmailRegex =  /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2}\.vjti\.ac\.in$/; ;
+    if (!collegeEmailRegex.test(email)) {
+      setErrorMessage("Please enter a valid college email address.");
+      return;
+    }
+
+    
   setErrorMessage("");
   console.log("All fields are filled. Proceeding with form submission...");
 }
@@ -104,6 +111,7 @@ function StudentSignUp() {
                         value={block}
                         style={{marginTop: '-2px'}}
                         onChange={(e) => setBlock(e.target.value)}
+                        
                       >
                         <option value="">Select Block</option>
                         <option value="A">A</option>
@@ -111,6 +119,7 @@ function StudentSignUp() {
                         <option value="C">C</option>
                         <option value="D">D</option>
                         <option value="E">E</option>
+                        <option value="PG Boys Hostel">PG Boys Hostel</option>
                       </Form.Control>
                     </Form.Group>
                   </Col>
