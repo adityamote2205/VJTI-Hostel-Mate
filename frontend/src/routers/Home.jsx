@@ -5,7 +5,7 @@ import "./styleshome.css";
 
 function Home() {
     // Assuming isLoggedIn state is managed in the parent component
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     return (
         <div>
