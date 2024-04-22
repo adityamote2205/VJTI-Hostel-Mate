@@ -18,7 +18,7 @@ export const getStudentComplaint = asyncWrapper(async (req, res) => {
         const decodedToken = jwt.verify(token, process.env.JWTSECRET);
         const { user_id, user_role } = decodedToken;
 
-        if (user_role === "student") {
+        if (user_role == "student") {
             const allComplaints = await pool.query("SELECT * FROM hostel_complaints WHERE student_id=$1 ORDER BY created_on DESC", [user_id]);
             return res.json(allComplaints.rows);
         } else {
@@ -40,9 +40,10 @@ export const deleteStudentComplaint=asyncWrapper(async(req,res)=>{
         const { user_id, user_role } = decodedToken;
         const complaint_id=req.params.id;
         if(user_role=="student"){
-          const result=await pool.query("DELETE FROM hostel_complaints WHERE complaint_id=$1",[complaint_id]);
+          const result=await pool.query("DELETE FROM hostel_complaints WHERE complaint_id=$1 AND student_id=$2",[complaint_id,user_id]);
+          console.log(result);
           if(result.rowCount==0){
-            return res.json({status:"complaint already deleted"});
+            return res.json({status:"You are not authorised to delete this complaint"});
           }
           return res.json({status:"Success"});
         }
