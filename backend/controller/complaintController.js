@@ -70,6 +70,7 @@ export const postStudentComplaint=asyncWrapper(async(req,res)=>{
         if(req.file){
             image=req.file.path;
         }
+       
         const result=await pool.query("INSERT INTO hostel_complaints(topic,room_details,complaint_type,image,complaint,student_id,created_on) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *",[topic,room_details,complaint_type,image,complaint,user_id,created_on]);
         console.log(result.rows);
     }

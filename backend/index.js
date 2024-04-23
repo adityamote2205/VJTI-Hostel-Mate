@@ -13,6 +13,7 @@ app.use(cors());
 pool.connect();
  
 
+console.log("hi");
 
 app.use('/',registerRoutes);
 app.use('/',loginRoutes);
