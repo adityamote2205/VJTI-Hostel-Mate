@@ -19,6 +19,12 @@ function RectorSignUp() {
     setErrorMessage("Please fill in all fields.");
     return;
   }
+  const collegeEmailRegex1 = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2}\.vjti\.ac\.in$/;
+  const collegeEmailRegex2 = /^[a-zA-Z0-9._%+-]+@vjti\.ac\.in$/;
+  if (!collegeEmailRegex1.test(email) && !collegeEmailRegex2.test(email)) {
+    setErrorMessage("Please enter a valid college email address.");
+    return;
+  }
   setErrorMessage("");
   console.log("All fields are filled. Proceeding with form submission...");
 }

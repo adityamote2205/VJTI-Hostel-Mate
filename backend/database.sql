@@ -23,9 +23,9 @@ CREATE TABLE hostel_complaints(
   topic VARCHAR(50) NOT NULL,
   room_details VARCHAR(100) NOT NULL,
   complaint_type VARCHAR(50) NOT NULL,
-  image BYTEA,
+  image TEXT,
   complaint TEXT NOT NULL,
-  student_id FOREIGN KEY REFERENCES students(id) NOT NULL,
+   student_id BIGINT REFERENCES students(id) NOT NULL,
   created_on DATE NOT NULL,
   is_completed VARCHAR(10) DEFAULT 'no' NOT NULL,
   completed_on TIMESTAMP 
@@ -36,7 +36,7 @@ CREATE TABLE mess_complaints(
   complaint_type VARCHAR(50) NOT NULL,
   image BYTEA,
   complaint TEXT NOT NULL,
-  student_id FOREIGN KEY REFERENCES students(id) NOT NULL,
+  student_id BIGINT REFERENCES students(id) NOT NULL,
   created_on DATE NOT NULL,
   is_completed VARCHAR(10) DEFAULT 'no' NOT NULL,
   completed_on TIMESTAMP 

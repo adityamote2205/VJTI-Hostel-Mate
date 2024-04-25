@@ -5,6 +5,9 @@ import dotenv from 'dotenv';
 import registerRoutes from "./routes/registerRoutes.js";
 import loginRoutes from "./routes/loginRoutes.js";
 import complaintRoutes from "./routes/complaintRoutes.js";
+import rectorComplaintRoutes from "./routes/rectorComplaintRoutes.js";
+import studentProfileRoutes from "./routes/studentProfileRoutes.js";
+import rectorProfileRoutes from "./routes/rectorprofileRoutes.js";
 dotenv.config();
 const app=express();
 
@@ -12,13 +15,12 @@ app.use(express.json());
 app.use(cors());
 pool.connect();
  
-
-
 app.use('/',registerRoutes);
 app.use('/',loginRoutes);
 app.use('/',complaintRoutes);
-
-
+app.use('/',rectorComplaintRoutes);
+app.use('/',studentProfileRoutes);
+app.use('/',rectorProfileRoutes);
 app.listen(process.env.PORT,()=>{
      console.log(`server is runnning on port ${process.env.PORT}` );
 })
