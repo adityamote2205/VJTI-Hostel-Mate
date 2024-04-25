@@ -1,37 +1,102 @@
-import React, { useState,useEffect } from "react";
-import { Link } from "react-router-dom";
+// import React, { useState,useEffect } from "react";
+// import { Link } from "react-router-dom";
+// import "../styling.css";
+// import { Container, Row, Col,  Form } from "react-bootstrap";
+// import MailIcon from '@mui/icons-material/Mail';
+// import {  InputAdornment } from '@mui/material';
+// import Input from '@mui/material/Input';
+// import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
+// import Button from '@mui/material/Button';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import SchoolIcon from '@mui/icons-material/School';
+// import { useNavigate ,useLocation} from "react-router-dom";
+
+
+// function SignIn() {
+//   const [redirecting, setRedirecting] = useState(false);
+//   const navigate = useNavigate();
+//   const location=useLocation();
+//   const path=location.pathname;
+//   const [showIcons, setShowIcons] = useState(false);
+//   const handleRedirect = (path) => {
+//     setRedirecting(true);
+//     console.log(redirecting);
+//     setTimeout(() => {
+//       navigate(path);
+//     }, 1000); // 2 seconds delay
+//   };
+//   useEffect(() => {
+//     // Set a timeout to show icons after 1.5 seconds
+//     const timeout = setTimeout(() => {
+//       setShowIcons(true);
+//     }, 300);
+
+//     // Cleanup function to clear the timeout
+//     return () => clearTimeout(timeout);
+//   }, []);
+
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import "../styling.css";
-import { Container, Row, Col,  Form } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import MailIcon from '@mui/icons-material/Mail';
-import {  InputAdornment } from '@mui/material';
+import { InputAdornment } from '@mui/material';
 import Input from '@mui/material/Input';
 import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
 import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SchoolIcon from '@mui/icons-material/School';
-import { useNavigate ,useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import backendapi from "../apis/backendapi";
+import { useAuth } from "../context/AuthContext";
+
 function SignIn() {
-  const [redirecting, setRedirecting] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const location=useLocation();
-  const path=location.pathname;
+  const { login,isTokenValid } = useAuth();
+  const location = useLocation();
+  const path = location.pathname;
   const [showIcons, setShowIcons] = useState(false);
-  const handleRedirect = (path) => {
-    setRedirecting(true);
-    console.log(redirecting);
-    setTimeout(() => {
-      navigate(path);
-    }, 1000); // 2 seconds delay
-  };
+  const [redirecting, setRedirecting] = useState(false);
+
   useEffect(() => {
-    // Set a timeout to show icons after 1.5 seconds
     const timeout = setTimeout(() => {
       setShowIcons(true);
     }, 300);
 
-    // Cleanup function to clear the timeout
     return () => clearTimeout(timeout);
   }, []);
+
+  const handleRedirect = (path) => {
+    setRedirecting(true);
+    setTimeout(() => {
+      navigate(path);
+    }, 1000);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setError("email and password are required.");
+      return;
+    }
+
+    try {
+      const response = await backendapi.post("/login/student", { email, password });
+      console.log(response);
+      const { jwtToken } = response.data;
+      if (jwtToken) {
+        login(jwtToken);
+        isTokenValid(true);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      // Handle login error (e.g., display error message)
+    }
+  };
   return (
     <>
         
@@ -70,6 +135,8 @@ function SignIn() {
                     type="email"
                     placeholder="Email"
                     as={Input}
+                    value={email}
+                    onChange={(e)=>{setEmail(e.target.value)}}
                     id="input-with-icon-adornment"
                     endAdornment={
                       <InputAdornment position="end">
@@ -86,6 +153,8 @@ function SignIn() {
                     type="password"
                     placeholder="Password"
                     as={Input}
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
                     id="input-with-icon-adornment"
                     endAdornment={
                       <InputAdornment position="end">
@@ -94,18 +163,26 @@ function SignIn() {
                     }
                   />
                 </Form.Group>
+                
+                {error && (
+                 <div className="mt-3 text-center">
+                 <div className=" text-danger error-message">{error}</div>
+                </div>
+                 )}
+
 
                 <Form.Group className="text-center mt-4 mb-2">
                 <Button 
                    variant="contained"
                     type="submit"
                     className="mb-3 mt-2 text-center hoverEffect"
+                    onClick={handleLogin}
                     style={{ backgroundColor: "#836FFF", color: "white" }}
                   >
                     Login
                   </Button>
                 </Form.Group>
-                
+
                 <span>
                 <Form.Group  className="mb-3 d-flex align-items-center justify-content-center">
                 

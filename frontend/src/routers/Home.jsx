@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "./styleshome.css";
+import { useAuth } from '../context/AuthContext'; 
 
 function Home() {
     // Assuming isLoggedIn state is managed in the parent component
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    // const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const { authToken,isTokenValid } = useAuth(); 
 
     return (
         <div>
-            <Header isLoggedIn={isLoggedIn} />
+            {/* <Header isLoggedIn={isLoggedIn} /> */}
+            <Header />
             <div className="jumbotron p-3 p-md-5 text-white rounded mb-3 slow-animation" style={{ backgroundColor: "#8062D6", marginLeft: '10px', marginRight: '10px', marginTop: '15px' }}>
                 <div className="col-md-6 px-0">
                     <h1 className="display-4 font-italic">Empowering Hostel Residents: Your Concerns, Our Action!</h1>
@@ -18,9 +21,70 @@ function Home() {
                 </div>
             </div>
 
-          
-
             <div className="row mb-4">
+                <div className="col-md-6">
+                    <div className="card flex-md-row mb-4 box-shadow h-md-250" style={{ backgroundColor: "#F0F3FF", marginLeft: "10px", marginRight: "5px" }}>
+                        <div className="card-body d-flex flex-column align-items-start">
+                            <strong className="d-inline-block mb-2 text-primary">Grievance 1</strong>
+                            <h3 className="mb-0">
+                                <a className="text-dark" href={isTokenValid ? "/hostel/:id/student" : "/signIn/student"}>Hostel</a>
+                            </h3>
+                            <div className="mb-1 text-muted">Raise your concerns related to hostel facilities and management.</div>
+                            <p className="card-text mb-auto">This platform provides a space for hostel residents to voice their grievances regarding various hostel-related issues such as maintenance, cleanliness, and amenities.</p>
+                            <a href={isTokenValid ? "/hostel/:id/student" : '/signIn/student'}>{isTokenValid ? "Register Hostel related grievances here !!" : "Login to register grievances..."}</a>
+                        </div>
+                        <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="https://t4.ftcdn.net/jpg/02/19/66/93/240_F_219669327_v12pBKc7TB62E3uCJrgRRkDhfVENK3z5.jpg" data-holder-rendered="true" style={{ width: 200, height: 250 }} />
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="card flex-md-row mb-4 box-shadow h-md-250" style={{ backgroundColor: "#F0F3FF", marginLeft: "5px", marginRight: "10px" }}>
+                        <div className="card-body d-flex flex-column align-items-start">
+                            <strong className="d-inline-block mb-2 text-success">Grievance 2</strong>
+                            <h3 className="mb-0">
+                                <a className="text-dark" href={isTokenValid ? "/mess/:id/student" : "/signIn/student"}>Mess</a>
+                            </h3>
+                            <div className="mb-1 text-muted">Raise your concerns related to mess food and services.</div>
+                            <p className="card-text mb-auto">This platform provides a space for hostel residents to voice their grievances regarding various mess-related issues such as food quality, hygiene, and service.</p>
+                            <a href={isTokenValid ? "/mess/:id/student" : "/signIn/student"}>{isTokenValid ? "Register Mess related grievances here !!" : "Login to register grievances..."}</a>
+                        </div>
+                        <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="https://tnau.ac.in/site/aecri-cbe/wp-content/uploads/sites/71/2020/04/9.jpg" data-holder-rendered="true" style={{ width: 200, height: 250 }} />
+                    </div>
+                </div>
+            </div>
+
+
+            {/* <div className="row mb-4">
+                <div className="col-md-6">
+                    <div className="card flex-md-row mb-4 box-shadow h-md-250" style={{ backgroundColor: "#F0F3FF", marginLeft: "10px", marginRight: "5px" }}>
+                        <div className="card-body d-flex flex-column align-items-start">
+                            <strong className="d-inline-block mb-2 text-primary">Grievance 1</strong>
+                            <h3 className="mb-0">
+                                <a className="text-dark" href={authToken ? "/hostel/:id/student" : "/signIn/student"}>Hostel</a>
+                            </h3>
+                            <div className="mb-1 text-muted">Raise your concerns related to hostel facilities and management.</div>
+                            <p className="card-text mb-auto">This platform provides a space for hostel residents to voice their grievances regarding various hostel-related issues such as maintenance, cleanliness, and amenities.</p>
+                            <a href={authToken ? "/hostel/:id/student" : '/signIn/student'}>{authToken ? "Register Hostel related grievances here !!" : "Login to register grievances..."}</a>
+                        </div>
+                        <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="https://t4.ftcdn.net/jpg/02/19/66/93/240_F_219669327_v12pBKc7TB62E3uCJrgRRkDhfVENK3z5.jpg" data-holder-rendered="true" style={{ width: 200, height: 250 }} />
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="card flex-md-row mb-4 box-shadow h-md-250" style={{ backgroundColor: "#F0F3FF", marginLeft: "5px", marginRight: "10px" }}>
+                        <div className="card-body d-flex flex-column align-items-start">
+                            <strong className="d-inline-block mb-2 text-success">Grievance 2</strong>
+                            <h3 className="mb-0">
+                                <a className="text-dark" href={authToken ? "/mess/:id/student" : "/signIn/student"}>Mess</a>
+                            </h3>
+                            <div className="mb-1 text-muted">Raise your concerns related to mess food and services.</div>
+                            <p className="card-text mb-auto">This platform provides a space for hostel residents to voice their grievances regarding various mess-related issues such as food quality, hygiene, and service.</p>
+                            <a href={authToken ? "/mess/:id/student" : "/signIn/student"}>{authToken ? "Register Mess related grievances here !!" : "Login to register grievances..."}</a>
+                        </div>
+                        <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="https://tnau.ac.in/site/aecri-cbe/wp-content/uploads/sites/71/2020/04/9.jpg" data-holder-rendered="true" style={{ width: 200, height: 250 }} />
+                    </div>
+                </div>
+            </div> */}
+
+            {/* <div className="row mb-4">
                 <div className="col-md-6">
                     <div className="card flex-md-row mb-4 box-shadow h-md-250" style={{ backgroundColor: "#F0F3FF", marginLeft: "10px", marginRight: "5px" }}>
                         <div className="card-body d-flex flex-column align-items-start">
@@ -49,7 +113,7 @@ function Home() {
                         <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="https://tnau.ac.in/site/aecri-cbe/wp-content/uploads/sites/71/2020/04/9.jpg" data-holder-rendered="true" style={{ width: 200, height: 250 }} />
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <hr style={{marginRight:'18px', marginLeft:"15px"}}/>
 

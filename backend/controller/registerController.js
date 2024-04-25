@@ -11,6 +11,7 @@ pool.connect();
 
 export const studentRegister = asyncWrapper(async (req, res) => {
     const { name, gender, year, block, branch, room_no, reg_no, email, password } = req.body;
+    console.log(req.body);
 
     try {
         const student = await pool.query("SELECT * FROM students WHERE email=$1",[email]);

@@ -1,38 +1,102 @@
+// import React, { useState } from "react";
+// import { Link } from "react-router-dom";
+// import "../styling.css";
+// import { Container, Row, Col,  Form } from "react-bootstrap";
+// import NativeSelect from '@mui/material/NativeSelect';
+// import Button from '@mui/material/Button';
+
+// function StudentSignUp() {
+//   const [ name, setName ] = useState("")
+//   const [ gender, setGender ] = useState("")
+//   const [ year, setYear ] = useState("")
+//   const [ block, setBlock ] = useState("")
+//   const [ branch, setBranch] = useState("");
+//   const [ roomNo, setRoomNo] = useState("");
+//   const [ regNo, setRegNo] = useState("");
+//   const [ email, setEmail] = useState("");
+//   const [password,setPassword]=useState("");
+//   const [errorMessage, setErrorMessage] = useState(""); 
+//  function handleSubmit(event){
+//   event.preventDefault();
+//   if (!name || !gender || !year || !block || !branch || !roomNo || !regNo || !email || !password) {
+//     // If any field is empty, display an error message or perform any other action
+//     setErrorMessage("Please fill in all fields.");
+//     return;
+//   }
+//   const collegeEmailRegex =  /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2}\.vjti\.ac\.in$/; ;
+//     if (!collegeEmailRegex.test(email)) {
+//       setErrorMessage("Please enter a valid college email address.");
+//       return;
+//     }
+
+    
+//   setErrorMessage("");
+//   console.log("All fields are filled. Proceeding with form submission...");
+// }
+
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styling.css";
-import { Container, Row, Col,  Form } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
+import backendapi from "../apis/backendapi";
+import { useAuth } from "../context/AuthContext";
 
 function StudentSignUp() {
-  const [ name, setName ] = useState("")
-  const [ gender, setGender ] = useState("")
-  const [ year, setYear ] = useState("")
-  const [ block, setBlock ] = useState("")
-  const [ branch, setBranch] = useState("");
-  const [ roomNo, setRoomNo] = useState("");
-  const [ regNo, setRegNo] = useState("");
-  const [ email, setEmail] = useState("");
-  const [password,setPassword]=useState("");
-  const [errorMessage, setErrorMessage] = useState(""); 
- function handleSubmit(event){
-  event.preventDefault();
-  if (!name || !gender || !year || !block || !branch || !roomNo || !regNo || !email || !password) {
-    // If any field is empty, display an error message or perform any other action
-    setErrorMessage("Please fill in all fields.");
-    return;
-  }
-  const collegeEmailRegex =  /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2}\.vjti\.ac\.in$/; ;
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [year, setYear] = useState("");
+  const [block, setBlock] = useState("");
+  const [branch, setBranch] = useState("");
+  const [roomNo, setRoomNo] = useState("");
+  const [regNo, setRegNo] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  const {isTokenValid} = useAuth();
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (!name || !gender || !year || !block || !branch || !roomNo || !regNo || !email || !password) {
+      setErrorMessage("Please fill in all fields.");
+      return;
+    }
+
+    const collegeEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2}\.vjti\.ac\.in$/;
     if (!collegeEmailRegex.test(email)) {
       setErrorMessage("Please enter a valid college email address.");
       return;
     }
 
-    
-  setErrorMessage("");
-  console.log("All fields are filled. Proceeding with form submission...");
-}
+    try {
+      const response = await backendapi.post("/register/student", {
+        name,
+        gender,
+        year,
+        block,
+        branch,
+        room_no: roomNo,
+        reg_no: regNo,
+        email,
+        password
+      });
+
+      const { jwtToken } = response.data;
+      if (jwtToken) {
+        localStorage.setItem("jwtToken", jwtToken);
+        isTokenValid(true);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error registering student:", error);
+      setErrorMessage("Registration failed. Please try again.");
+    }
+  }
+
   return (
     <>
       <div className="outer-container">
@@ -91,10 +155,10 @@ function StudentSignUp() {
                         onChange={(e) => setYear(e.target.value)}
                       >
                         <option value="">Select Year</option>
-                        <option value="firstYear">I</option>
-                        <option value="secondYear">II</option>
-                        <option value="thirdYear">III</option>
-                        <option value="fourthYear">IV</option>
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
                       </Form.Control>
                     </Form.Group>
                   </Col>

@@ -16,10 +16,11 @@ import Rector_Home from "./routers/Rector_Home";
 import RectorProfile from "./routers/RectorProfile";
 import ProfileEdit from "./routers/ProfileEdit";
 import RectorProfileEdit from "./routers/RectorProfileEdit";
+import { AuthProvider } from "./context/AuthContext";
 function App() {
   return (
    
-    
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -41,6 +42,8 @@ function App() {
            
         </Routes>
       </Router>
+
+      </AuthProvider>
    
      
   );
