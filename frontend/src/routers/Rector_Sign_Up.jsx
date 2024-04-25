@@ -1,33 +1,60 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styling.css";
-import { Container, Row, Col,  Form } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
+import backendapi from "../apis/backendapi";
+import { useAuth } from "../context/AuthContext";
 
 function RectorSignUp() {
-  const [ name, setName ] = useState("")
-  const [ gender, setGender ] = useState("")
-  const [ block, setBlock ] = useState("")
-  const [ email, setEmail] = useState("");
-  const [password,setPassword]=useState("");
-  const [errorMessage, setErrorMessage] = useState(""); 
- function handleSubmit(event){
-  event.preventDefault();
-  if (!name || !gender ||  !block || !email || !password) {
-    // If any field is empty, display an error message or perform any other action
-    setErrorMessage("Please fill in all fields.");
-    return;
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [block, setBlock] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  const {isTokenValid} = useAuth();
+
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!name || !gender || !block || !email || !password) {
+      setErrorMessage("Please fill in all fields.");
+      return;
+    }
+
+    const collegeEmailRegex1 = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2}\.vjti\.ac\.in$/;
+    const collegeEmailRegex2 = /^[a-zA-Z0-9._%+-]+@vjti\.ac\.in$/;
+    if (!collegeEmailRegex1.test(email) && !collegeEmailRegex2.test(email)) {
+      setErrorMessage("Please enter a valid college email address.");
+      return;
+    }
+
+    try {
+      backendapi.post("/register/rector", {
+        name,
+        gender,
+        block,
+        email,
+        password
+      }).then(response => {
+        const { jwtToken } = response.data;
+        if (jwtToken) {
+          localStorage.setItem("jwtToken", jwtToken);
+          isTokenValid(true);
+          navigate("/rector/home");
+        }
+      });
+    } catch (error) {
+      console.error("Error registering rector:", error);
+      setErrorMessage("Registration failed. Please try again.");
+    }
   }
-  const collegeEmailRegex1 = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2}\.vjti\.ac\.in$/;
-  const collegeEmailRegex2 = /^[a-zA-Z0-9._%+-]+@vjti\.ac\.in$/;
-  if (!collegeEmailRegex1.test(email) && !collegeEmailRegex2.test(email)) {
-    setErrorMessage("Please enter a valid college email address.");
-    return;
-  }
-  setErrorMessage("");
-  console.log("All fields are filled. Proceeding with form submission...");
-}
+
   return (
     <>
       <div className="outer-container">

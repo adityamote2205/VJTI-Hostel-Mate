@@ -5,9 +5,9 @@ import { useAuth } from '../context/AuthContext';
 
 const Footer = () => {
 
-  const { authToken } = useAuth();
+  const { authToken,isTokenValid } = useAuth(); 
 
-    const hostelLink = authToken ? "/hostel/:id/student" : "/signIn/student";
+    const hostelLink = isTokenValid ? "/hostel/:id/student" : "/signIn/student";
   return (
     <div style={{backgroundColor:'#F0F3FF',marginTop:'15px'}} >
        <footer className="footer" style={{backgroundColor:'#F0F3FF'}}>{/* Added slow-animation class */}

@@ -11,13 +11,20 @@ import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SchoolIcon from '@mui/icons-material/School';
 import { useNavigate,useLocation } from "react-router-dom";
+import backendapi from "../apis/backendapi";
+import { useAuth } from "../context/AuthContext";
 
 function SignInRector() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const { login,isTokenValid } = useAuth();
   const location=useLocation();
   const path=location.pathname;
   const [redirecting, setRedirecting] = useState(false);
   const navigate = useNavigate();
   const [showIcons, setShowIcons] = useState(false);
+
   const handleRedirect = (path) => {
     setRedirecting(true);
     console.log(redirecting);
@@ -34,6 +41,28 @@ function SignInRector() {
     // Cleanup function to clear the timeout
     return () => clearTimeout(timeout);
   }, []);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setError("email and password are required.");
+      return;
+    }
+
+    try {
+      const response = await backendapi.post("/login/rector", { email, password });
+      console.log(response);
+      const { jwtToken } = response.data;
+      if (jwtToken) {
+        login(jwtToken);
+        isTokenValid(true);
+        navigate("/rector/home");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      // Handle login error (e.g., display error message)
+    }
+  };
   return (
     <>
        
@@ -73,6 +102,8 @@ function SignInRector() {
                     type="email"
                     placeholder="Email"
                     as={Input}
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
                     id="input-with-icon-adornment"
                     endAdornment={
                       <InputAdornment position="end">
@@ -90,6 +121,8 @@ function SignInRector() {
                     placeholder="Password"
                     as={Input}
                     id="input-with-icon-adornment"
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
                     endAdornment={
                       <InputAdornment position="end">
                         <EnhancedEncryptionIcon/>
@@ -97,13 +130,18 @@ function SignInRector() {
                     }
                   />
                 </Form.Group>
-
+                {error && (
+                 <div className="mt-3 text-center">
+                 <div className=" text-danger error-message">{error}</div>
+                </div>
+                 )}
                 <Form.Group className="text-center mt-4 mb-2">
                 <Button 
                    variant="contained"
                     type="submit"
                     className="mb-3 mt-2 text-center hoverEffect"
                     style={{ backgroundColor: "#836FFF", color: "white" }}
+                    onClick={handleLogin}
                   >
                     Login
                   </Button>
