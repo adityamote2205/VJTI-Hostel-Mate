@@ -1,8 +1,13 @@
 import React from 'react';
 import HubTwoToneIcon from '@mui/icons-material/HubTwoTone';
 import "../routers/styleshome.css";
+import { useAuth } from '../context/AuthContext';
 
 const Footer = () => {
+
+  const { authToken } = useAuth();
+
+    const hostelLink = authToken ? "/hostel/:id/student" : "/signIn/student";
   return (
     <div style={{backgroundColor:'#F0F3FF',marginTop:'15px'}} >
        <footer className="footer" style={{backgroundColor:'#F0F3FF'}}>{/* Added slow-animation class */}
@@ -42,7 +47,7 @@ const Footer = () => {
                       <a href="/" className="link-secondary text-decoration-none">Home</a>
                     </li>
                     <li className="mb-2">
-                      <a href="/hostel/:id/student" className="link-secondary text-decoration-none">Grievance</a>
+                      <a href={hostelLink} className="link-secondary text-decoration-none">Grievance</a>
                     </li>
                     <li className="mb-2">
                       <a href="/aboutUs" className="link-secondary text-decoration-none">About</a>
