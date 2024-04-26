@@ -14,7 +14,6 @@ export const studentLogin=asyncWrapper(async(req,res)=>{
     console.log(req.body);
     try{
         const student=await pool.query("SELECT * FROM students WHERE email=$1",[email]);
-        console.log(student.rows);
         if(student.rows.length===0){
             return res.status(401).json("Invalid Email!");
         }

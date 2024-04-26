@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ComplaintForm from "../components/complaintForm";
 import HubTwoToneIcon from '@mui/icons-material/HubTwoTone';
 import Complaints from "../components/Complaints";
 import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
 import BrandComponent from "../components/BrandComponent";
 import Footer from "../components/Footer";
-function StudentHostel(){
+import backendapi from "../apis/backendapi";
+import { useAuth } from "../context/AuthContext";
+
+function StudentHostel() {
+  const { headers } = useAuth();
+  const [complaints, setComplaints] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await backendapi.get("/complaint/hostel/student", { headers });
+        setComplaints(response.data);
+        console.log(response.data);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching complaints:", err);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [headers]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Render loading indicator while fetching data
+  }
+
     return(
       <div>
 
@@ -44,16 +70,16 @@ function StudentHostel(){
                 </div>
             </nav>
        
-      <div className="mt-1" style={{paddingleft:"10px", backgroundColor:'white' ,marginBottom:"-10px"}}>
+    <div className="mt-1" style={{paddingleft:"10px", backgroundColor:'white' ,marginBottom:"-10px"}}>
       <h2 className=" pt-5 pr-5"><strong><ErrorOutlineRoundedIcon style={{marginLeft:'80px'}}/> Your Hostel Complaints</strong></h2>
       <hr style={{marginLeft:'80px',marginRight:'80px'}}/>
-      <Complaints/>
+      <Complaints complaints={complaints} />
 
       <hr style={{marginLeft:'80px',marginRight:'80px'}}/>
       <div className="container mr-3 ml-3 mt-5" style={{ marginLeft: "200px",marginRight: "-100px"}}>
      <ComplaintForm/>
      </div>
-     </div>
+    </div>
      <div style={{backgroundColor:'#F0F3FF',marginTop:'15px'}} >
       <Footer/>
     </div>
