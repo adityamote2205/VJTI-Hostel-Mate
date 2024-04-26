@@ -57,7 +57,7 @@ function StudentSignUp() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const {isTokenValid} = useAuth();
+  const {login,isTokenValid} = useAuth();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -84,11 +84,11 @@ function StudentSignUp() {
         email,
         password
       });
-
+      console.log(response.data);
       const { jwtToken } = response.data;
+      console.log(jwtToken);
       if (jwtToken) {
-        localStorage.setItem("jwtToken", jwtToken);
-        isTokenValid(true);
+        login(jwtToken);
         navigate("/");
       }
     } catch (error) {
