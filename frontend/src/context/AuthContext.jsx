@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     setIsTokenValid(false); // Invalidate token status on logout
   };
 
-  const headers = authToken ? { "Content-Type": "application/json", "authorization": authToken } : {};
+const headers = authToken ? { "Content-Type": "application/json", "authorization": authToken } : {"Content-Type": "application/json", "authorization": " " };
 
   return (
     <AuthContext.Provider value={{ authToken, login, logout, headers, isTokenValid }}>
