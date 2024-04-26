@@ -43,12 +43,17 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => useContext(AuthContext);
 
 export const validateToken = async (token) => {
+ 
   try {
     const response = await backendapi.post("/validToken", { token }); // Assuming you have an endpoint to validate the token
-    return response.data; // Assuming the response contains a boolean indicating token validity
+    console.log("created");
+    return response.data;
+     // Assuming the response contains a boolean indicating token validity
   } catch (error) {
     console.error("Token validation failed:", error);
+    console.log("expired");
     return false;
+    
   }
 };
 
