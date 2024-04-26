@@ -1,73 +1,37 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-function Complaints() {
-    const [isHovered, setIsHovered] = useState(false);
-    function handleClick(){
-        console.log("clicked");
-    }
+
+function Complaints({ complaints }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  function handleClick() {
+    console.log("clicked");
+  }
+
   return (
-    <div className="container" >
-    <div className="row ">
-      <div className="col-sm-3 ml-5 mr-5 ">
-        <div className="card mt-3 mb-3 shadow" style={{backgroundColor: "#FAF9F6"}}>
-          <div className="card-body">
-            <h5 className="card-title" style={{color:"black", fontWeight:"bold"}}>Switch is not working</h5>
-            <p className="card-text" style={{fontSize:"15px"}}>Created on April 14,2024</p>
-            <p className="card-text" style={{color:"#999999"}}>With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" className="btn btn-danger">Not Completed</a>
+    <div className="container">
+      <div className="row" style={{ display: "flex", alignItems: "stretch" }}>
+        {complaints.map((complaint, index) => (
+          <div key={index} className="col-sm-4 ml-5 mr-5">
+            <div className="card mt-3 mb-3 pb-1 shadow d-flex flex-column" style={{ backgroundColor: "#FAF9F6", height: "90%" }}>
+              <div className="card-body">
+                <h5 className="card-title" style={{ color: "black", fontWeight: "bold" }}>{complaint.topic}</h5>
+                <p className="card-text" style={{ fontSize: "15px" }}>Created on {complaint.created_on}</p>
+                <p className="card-text" style={{ color: "#999999" }}>{complaint.complaint}</p>
+              </div>
+              <div style={{ marginTop: "auto", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px" }} className="mb-2">
+                <a href="#" className="btn btn-danger">Not Completed</a>
+                <div className="position-relative">
+                  <DeleteRoundedIcon style={{ fontSize: '30px', color: isHovered ? "black" : "#999999", cursor: "pointer" }}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    onClick={handleClick} />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="position-absolute bottom-0 end-0 m-3" style={{ paddingRight: '7px' }}>
-           <DeleteRoundedIcon   style={{ fontSize: '30px',color: isHovered ? "black" : "#999999", cursor: "pointer" }}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  onClick={handleClick}/>
-
-        </div>
-        </div>
+        ))}
       </div>
-      <div className="col-sm-3 ml-5">
-        <div className="card mt-3 mb-3 shadow" style={{backgroundColor: "#FAF9F6"}}>
-          <div className="card-body">
-            <h5 className="card-title" style={{color:"black", fontWeight:"bold"}}>Switch is not working</h5>
-            <p className="card-text" style={{fontSize:"15px"}}>Created on April 14,2024</p>
-            <p className="card-text" style={{color:"#999999"}}>With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" className="btn btn-danger">Not Completed</a>
-          </div>
-        </div>
-      </div>
-      <div className="col-sm-3 ml-5">
-        <div className="card mt-3 mb-3 shadow" style={{backgroundColor: "#FAF9F6"}}>
-          <div className="card-body">
-            <h5 className="card-title" style={{color:"black", fontWeight:"bold"}}>Switch is not working</h5>
-            <p className="card-text" style={{fontSize:"15px"}}>Created on April 14,2024</p>
-            <p className="card-text" style={{color:"#999999"}}>With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" className="btn btn-danger">Not Completed</a>
-          </div>
-        </div>
-      </div>
-      <div className="col-sm-3 ml-5">
-        <div className="card mt-3 mb-3 shadow"style={{backgroundColor: "#FAF9F6"}}>
-          <div className="card-body">
-            <h5 className="card-title" style={{color:"black", fontWeight:"bold"}}>Switch is not working</h5>
-            <p className="card-text" style={{fontSize:"15px"}}>Created on April 14,2024</p>
-            <p className="card-text" style={{color:"#999999"}}>With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" className="btn btn-danger">Not Completed</a>
-          </div>
-        </div>
-      </div>
-      <div className="col-sm-3 ml-5">
-        <div className="card mt-3 mb-3 shadow" style={{backgroundColor: "#FAF9F6"}}>
-          <div className="card-body">
-            <h5 className="card-title" style={{color:"black", fontWeight:"bold"}}>Switch is not working</h5>
-            <p className="card-text" style={{fontSize:"15px"}}>Created on April 14,2024</p>
-            <p className="card-text" style={{color:"#999999"}}>With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" className="btn btn-danger">Not Completed</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
     </div>
   );
 };

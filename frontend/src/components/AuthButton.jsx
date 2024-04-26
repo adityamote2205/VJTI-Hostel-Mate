@@ -8,6 +8,7 @@ const AuthButton = ({ isLoggedIn, handleProfile, handleLogin, isTokenValid }) =>
             {isTokenValid ? (
                 <button type="button" onClick={handleProfile} className="btn btn-outline-dark me-3"><PersonOutlineIcon /> Profile</button>
             ) : (
+                <>
                 <div className="btn-group me-3">
                     <button type="button" className="btn  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         SignUp
@@ -17,13 +18,19 @@ const AuthButton = ({ isLoggedIn, handleProfile, handleLogin, isTokenValid }) =>
                         <li><a className="dropdown-item" href="/signUp/rector">SignUp as a Rector</a></li>
                     </ul>
                 </div>
+
+<button type="button" onClick={handleLogin} className="btn btn-outline-secondary login-btn d-flex align-items-center">
+<LoginIcon style={{ marginRight: '10px' }} />
+Login
+</button>
+</>
             )}
-            {!isLoggedIn && (
-                <button type="button" onClick={handleLogin} className="btn btn-outline-secondary login-btn d-flex align-items-center">
-                    <LoginIcon style={{ marginRight: '10px' }} />
-                    Login
-                </button>
-            )}
+            {/* {(
+                // <button type="button" onClick={handleLogin} className="btn btn-outline-secondary login-btn d-flex align-items-center">
+                //     <LoginIcon style={{ marginRight: '10px' }} />
+                //     Login
+                // </button>
+            )} */}
         </div>
     );
 };

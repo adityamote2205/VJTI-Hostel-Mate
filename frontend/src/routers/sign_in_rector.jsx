@@ -55,7 +55,6 @@ function SignInRector() {
       const { jwtToken } = response.data;
       if (jwtToken) {
         login(jwtToken);
-        isTokenValid(true);
         navigate("/rector/home");
       }
     } catch (error) {

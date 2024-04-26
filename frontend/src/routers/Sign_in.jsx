@@ -89,7 +89,6 @@ function SignIn() {
       const { jwtToken } = response.data;
       if (jwtToken) {
         login(jwtToken);
-        isTokenValid(true);
         navigate("/");
       }
     } catch (error) {

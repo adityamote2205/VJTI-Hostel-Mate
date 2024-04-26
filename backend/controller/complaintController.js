@@ -14,7 +14,7 @@ pool.connect();
 dotenv.config();
 export const getStudentComplaint = asyncWrapper(async (req, res) => {
     const token = req.headers.authorization;
-
+     console.log(token);
     try {
         const decodedToken = jwt.verify(token, process.env.JWTSECRET);
         const { user_id, user_role } = decodedToken;
@@ -147,7 +147,6 @@ export const deleteStudentMessComplaint=asyncWrapper(async(req,res)=>{
      const decodedToken = jwt.verify(token, process.env.JWTSECRET);
      const { user_id, user_role } = decodedToken;
      const complaint_id=req.params.id;
-     console.log(user_id);
      if(user_role=="student"){
         const imagePath=await pool.query("SELECT image from mess_complaints WHERE complaint_id=$1 AND student_id=$2",[complaint_id,user_id]);
         const image =imagePath.rows[0].image;

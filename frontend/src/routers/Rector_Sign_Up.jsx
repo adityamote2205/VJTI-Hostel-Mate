@@ -17,7 +17,7 @@ function RectorSignUp() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const {isTokenValid} = useAuth();
+  const {login,isTokenValid} = useAuth();
 
 
   function handleSubmit(event) {
@@ -44,8 +44,7 @@ function RectorSignUp() {
       }).then(response => {
         const { jwtToken } = response.data;
         if (jwtToken) {
-          localStorage.setItem("jwtToken", jwtToken);
-          isTokenValid(true);
+          login(jwtToken);
           navigate("/rector/home");
         }
       });
