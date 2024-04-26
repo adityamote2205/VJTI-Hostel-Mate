@@ -84,8 +84,9 @@ function StudentSignUp() {
         email,
         password
       });
-
+      console.log(response.data);
       const { jwtToken } = response.data;
+      console.log(jwtToken);
       if (jwtToken) {
         login(jwtToken);
         navigate("/");
