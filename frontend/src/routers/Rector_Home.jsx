@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import Header from '../components/Header'
 import BrandComponent from '../components/BrandComponent'
 import NavComponent from '../components/NavComponent';
@@ -9,8 +9,22 @@ import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
 import ApprovalIcon from '@mui/icons-material/Approval';
 import Footer from '../components/Footer';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+
 
 const Rector_Home = () => {
+
+  const navigate = useNavigate();
+  const { isTokenValid } = useAuth();
+
+  useEffect(() => {
+    // Redirect to sign-in page if token is not valid
+    if (!isTokenValid) {
+      navigate("/signIn/rector");
+    }
+  }, [isTokenValid, navigate]);
+
   return (
     <div>
       <nav style={{ backgroundColor: '#F0F3FF', borderBottom: '1px solid #dee2e6', padding: '10px 0' }}>

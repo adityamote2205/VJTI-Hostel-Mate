@@ -92,6 +92,7 @@ function SignIn() {
       }
     } catch (error) {
       console.error("Login failed:", error);
+      setError("Login failed !! Please check your email and password.");
       // Handle login error (e.g., display error message)
     }
   };
