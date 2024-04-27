@@ -1,13 +1,15 @@
 import React,{useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams,useNavigate,useLocation} from "react-router-dom";
 import { Card, Form} from 'react-bootstrap';
 import Input from '@mui/material/Input';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import NativeSelect from '@mui/material/NativeSelect';
+import backendapi from '../apis/backendapi';
+import { useAuth } from '../context/AuthContext';
 function ComplaintForm() {
-    const {id} =useParams();
-    console.log(id);
+    let navigate=useNavigate();
+    let location=useLocation();
     const [rows, setRows] = useState(1);
     const [complaintTopic,setComplaintTopic]=useState("");
     const [Roomno,setRoomno]=useState("");
@@ -15,6 +17,7 @@ function ComplaintForm() {
     const [complaint,setComplaint]=useState("");
     const [selectedFile, setSelectedFile] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
+    const {authToken}=useAuth();
     const handleFileChange = (e) => {
       setSelectedFile(e.target.files[0]);
     };
@@ -30,29 +33,35 @@ function ComplaintForm() {
         event.target.rows = currentRows;
         setRows(currentRows);
       };
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
         if (!complaintTopic || !Roomno || !complaintType || !complaint) {
           setErrorMessage('Please fill in all required fields.');
         } else {
           // If all fields are filled, you can proceed with your logic here
-          const currentDate = getCurrentDate();
-          console.log('Submit data:', {
-            complaintTopic,
-            Roomno,
-            complaintType,
-            complaint,
-            selectedFile, // This will be null if no file is selected
-            currentDate
-          });
+          const currentDate = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-');
+          const formData = new FormData();
+          formData.append('image', selectedFile);
+          formData.append('topic',complaintTopic);
+          formData.append('room_details',Roomno);
+          formData.append('complaint_type',complaintType);
+          formData.append('complaint',complaint);
+          formData.append('created_on',currentDate);
+           try{
+              const response = await backendapi.post("/complaint/hostel/student",formData,{headers: authToken ? { "authorization": authToken } : {}});
+              console.log(response);
+              navigate("/");
+             setTimeout(() => {
+             navigate(location.pathname);
+             }, 0); 
+             }
+           catch(err){
+            console.error("Error posting complaints:", err);
+           }
           setErrorMessage('');
         }
       };
-      const getCurrentDate = () => {
-        const date = new Date();
-        const options = { year: 'numeric', month: 'short', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
-      };
+      
   return (
     <div className="container mt-5 ml-3 mr-3" style={{ display: 'flex' }}>
     <div className="info-container mt-3" style={{ flex: 1, marginLeft:'-10px' ,paddingLeft:'-40px' }}>
@@ -88,7 +97,7 @@ function ComplaintForm() {
 
     </div>
     <div className="form-container" style={{ flex: 1 ,marginLeft:'-50px'}}>
-    <Card className="shadow p-3 mb-5 mt-5 bg-white rounded" style={{ maxWidth: '400px', margin: 'auto' }}>
+    <Card className="shadow p-3 mb-5 mt-3 bg-white rounded" style={{ maxWidth: '400px', margin: 'auto' }}>
     <div className='p-1'>
     <div className="d-flex justify-content-between ">
     <div>

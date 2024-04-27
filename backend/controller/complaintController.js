@@ -40,6 +40,7 @@ export const deleteStudentComplaint=asyncWrapper(async(req,res)=>{
         const decodedToken = jwt.verify(token, process.env.JWTSECRET);
         const { user_id, user_role } = decodedToken;
         const complaint_id=req.params.id;
+        console.log(req.params.id);
         if(user_role=="student"){
            const imagePath=await pool.query("SELECT image from hostel_complaints WHERE complaint_id=$1 AND student_id=$2",[complaint_id,user_id]);
            const image =imagePath.rows[0].image;
@@ -68,6 +69,7 @@ export const deleteStudentComplaint=asyncWrapper(async(req,res)=>{
 });
 export const postStudentComplaint=asyncWrapper(async(req,res)=>{
     const token= req.headers.authorization;
+    console.log(req.body);
     try {
      const decodedToken = jwt.verify(token, process.env.JWTSECRET);
      const { user_id, user_role } = decodedToken;
