@@ -5,8 +5,11 @@ import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
 import Dropdown from 'react-bootstrap/Dropdown';
 import BrandComponent from "../components/BrandComponent";
 import Footer from "../components/Footer";
+import { useAuth } from "../context/AuthContext";
 function RectorMess(){
     const [isOpen, setIsOpen] = useState(false);
+
+   
 
     const handleMouseEnter = () => {
         setIsOpen(true);
@@ -23,7 +26,7 @@ function RectorMess(){
                     <BrandComponent/>
                     <ul className="nav nav-tabs">
             <li className="nav-item" style={{marginLeft:"60px"}}>
-                <a className="nav-link " aria-current="page" href="/rector/home">Rector's Dashboard</a>
+                <a className="nav-link " aria-current="page" href='/rector/home'>Rector's Dashboard</a>
             </li>
             <li className="nav-item dropdown">
                 <a className="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Grivances</a>

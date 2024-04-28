@@ -2,10 +2,10 @@ import React from 'react';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LoginIcon from '@mui/icons-material/Login';
 
-const AuthButton = ({ isLoggedIn, handleProfile, handleLogin, isTokenValid }) => {
+const AuthButton = ({ isLoggedIn, handleProfile, handleLogin, isStudentTokenValid,authToken }) => {
     return (
         <div className="d-flex align-items-center" style={{ marginLeft: '-8px' }}>
-            {isTokenValid ? (
+            {(authToken && isStudentTokenValid) ? (
                 <button type="button" onClick={handleProfile} className="btn btn-outline-dark me-3"><PersonOutlineIcon /> Profile</button>
             ) : (
                 <>

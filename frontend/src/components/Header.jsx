@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
 
 const Header = () => {
     const navigate = useNavigate();
-    const { authToken, isTokenValid } = useAuth(); // Include isTokenValid from AuthContext
+    const { authToken, isStudentTokenValid } = useAuth(); // Include isTokenValid from AuthContext
 
     const handleLogin = () => {
         navigate("/signIn/student");
@@ -23,7 +23,7 @@ const Header = () => {
                 <div className="container-fluid d-flex justify-content-between align-items-center">
                     <BrandComponent />
                     <NavComponent />
-                    <AuthButton isLoggedIn={!!authToken} handleProfile={handleProfile} handleLogin={handleLogin} isTokenValid={isTokenValid} />
+                    <AuthButton isLoggedIn={!!authToken} handleProfile={handleProfile} handleLogin={handleLogin} isStudentTokenValid={isStudentTokenValid} authToken={authToken} />
                 </div>
             </nav>
         </div>

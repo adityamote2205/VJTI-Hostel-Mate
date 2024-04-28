@@ -87,7 +87,7 @@ function SignIn() {
       const response = await backendapi.post("/login/student", { email, password });
       const { jwtToken } = response.data;
       if (jwtToken) {
-        await login(jwtToken);
+        login(jwtToken);
         navigate("/");
       }
     } catch (error) {

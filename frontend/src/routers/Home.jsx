@@ -7,7 +7,8 @@ import { useAuth } from '../context/AuthContext';
 function Home() {
     // Assuming isLoggedIn state is managed in the parent component
     // const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const { authToken,isTokenValid } = useAuth(); 
+    const { authToken,isStudentTokenValid,isRectorTokenValid } = useAuth();
+
 
     return (
         <div>
@@ -27,11 +28,11 @@ function Home() {
                         <div className="card-body d-flex flex-column align-items-start">
                             <strong className="d-inline-block mb-2 text-primary">Grievance 1</strong>
                             <h3 className="mb-0">
-                                <a className="text-dark" href={isTokenValid ? "/hostel/:id/student" : "/signIn/student"}>Hostel</a>
+                                <a className="text-dark" href={isStudentTokenValid ? "/hostel/:id/student" : "/signIn/student"}>Hostel</a>
                             </h3>
                             <div className="mb-1 text-muted">Raise your concerns related to hostel facilities and management.</div>
                             <p className="card-text mb-auto">This platform provides a space for hostel residents to voice their grievances regarding various hostel-related issues such as maintenance, cleanliness, and amenities.</p>
-                            <a href={isTokenValid ? "/hostel/:id/student" : '/signIn/student'}>{isTokenValid ? "Register Hostel related grievances here !!" : "Login to register grievances..."}</a>
+                            <a href={isStudentTokenValid? "/hostel/:id/student" : '/signIn/student'}>{isStudentTokenValid ? "Register Hostel related grievances here !!" : "Login to register grievances..."}</a>
                         </div>
                         <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="https://t4.ftcdn.net/jpg/02/19/66/93/240_F_219669327_v12pBKc7TB62E3uCJrgRRkDhfVENK3z5.jpg" data-holder-rendered="true" style={{ width: 200, height: 250 }} />
                     </div>
@@ -41,11 +42,11 @@ function Home() {
                         <div className="card-body d-flex flex-column align-items-start">
                             <strong className="d-inline-block mb-2 text-success">Grievance 2</strong>
                             <h3 className="mb-0">
-                                <a className="text-dark" href={isTokenValid ? "/mess/:id/student" : "/signIn/student"}>Mess</a>
+                                <a className="text-dark" href={isStudentTokenValid ? "/mess/:id/student" : "/signIn/student"}>Mess</a>
                             </h3>
                             <div className="mb-1 text-muted">Raise your concerns related to mess food and services.</div>
                             <p className="card-text mb-auto">This platform provides a space for hostel residents to voice their grievances regarding various mess-related issues such as food quality, hygiene, and service.</p>
-                            <a href={isTokenValid ? "/mess/:id/student" : "/signIn/student"}>{isTokenValid ? "Register Mess related grievances here !!" : "Login to register grievances..."}</a>
+                            <a href={isStudentTokenValid ? "/mess/:id/student" : "/signIn/student"}>{isStudentTokenValid ? "Register Mess related grievances here !!" : "Login to register grievances..."}</a>
                         </div>
                         <img className="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="https://tnau.ac.in/site/aecri-cbe/wp-content/uploads/sites/71/2020/04/9.jpg" data-holder-rendered="true" style={{ width: 200, height: 250 }} />
                     </div>
