@@ -5,16 +5,17 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import { PieChart } from '@mui/x-charts/PieChart';
 import BrandComponent from "../components/BrandComponent";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import Footer from "../components/Footer";
 import backendapi from "../apis/backendapi";
 import {useAuth} from "../context/AuthContext"
 function RectorProfile(){
-  const { headers } = useAuth();
+  const { headers,logout } = useAuth();
   const [profile, setProfile] = useState({});
   const [hostelData,setHostelData] = useState({});
   const [messData,setMessData]=useState({});
   const [loading, setLoading] = useState(true);
+  const navigate=useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,7 +39,10 @@ function RectorProfile(){
     };
     fetchData();
   }, [headers]);
-
+  async function handleLogOut(){
+      await logout();
+      navigate("/signIn/rector");
+  }
   if (loading) {
     return <div>Loading...</div>; // Render loading indicator while fetching data
   }
@@ -95,7 +99,7 @@ function RectorProfile(){
               <ul className="nav nav-pills flex-column mt-2">
                       <li className="nav-item"><a className="nav-link active mt-0" style={{backgroundColor:"#F0F3FF",color:"#89817f"}} href="#"><PersonIcon/>{" "}Profile </a></li>
                       <li className="nav-item"> <a className="nav-link" href="/rector/:id/profile/edit"style={{marginTop:"-10px",backgroundColor:"white"}} ><EditNoteIcon/> Edit profile </a></li>
-                      <li className="nav-item"> <a className="nav-link" href="#"style={{marginTop:"-10px",backgroundColor:"white",color:"Red"}}><ExitToAppRoundedIcon/> Sign Out </a></li>
+                      <li className="nav-item"> <a className="nav-link" onClick={handleLogOut} style={{marginTop:"-10px",backgroundColor:"white",color:"Red"}}><ExitToAppRoundedIcon/> Sign Out </a></li>
              </ul>
 
             </div>

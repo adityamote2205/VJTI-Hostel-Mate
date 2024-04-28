@@ -162,7 +162,7 @@ Advocating for residents' rights, ensuring their concerns are heard and addresse
         <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
           <div class="card-body p-0 d-flex justify-content-center align-items-center">
             <figure class="m-0 p-0">
-              <img class="img-fluid" loading="lazy" src={require("../images/img4.jpg")} alt=""/>
+             <a href="https://www.linkedin.com/in/pradnya-khabale-b93bb226a/"> <img class="img-fluid" loading="lazy" src={require("../images/img4.jpg")} alt=""/></a>
               <figcaption class="m-0 p-4">
                 <h4 class="mb-1">Pradnya Khabale</h4>
                 <p class="text-secondary mb-0"><span>{'< '}</span>Full Stack Developer<span>{' />'}</span></p>
@@ -175,7 +175,7 @@ Advocating for residents' rights, ensuring their concerns are heard and addresse
         <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
           <div class="card-body p-0 d-flex justify-content-center align-items-center">
             <figure class="m-0 p-0">
-              <img class="img-fluid" loading="lazy" src={require("../images/img5.jpg")} alt=""/>
+              <a href="https://www.linkedin.com/in/aditya-mote-125455229/"><img class="img-fluid" loading="lazy" src={require("../images/img5.jpg")} alt=""/></a>
               <figcaption class="m-0 p-4">
                 <h4 class="mb-1">Aditya Mote</h4>
                 <p class="text-secondary mb-0"><span>{'< '}</span>Full Stack Developer<span>{' />'}</span></p>

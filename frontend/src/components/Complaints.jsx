@@ -67,8 +67,8 @@ function Complaints({ complaints }) {
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <DeleteRoundedIcon style={{ fontSize: '30px', color: hoveredIndex === index ? "black" : "#999999", cursor: "pointer" }}
-                    onClick={(e)=>handleClick(complaint.complaint_id)} />
+                  {complaint.is_completed=='no'?(<DeleteRoundedIcon style={{ fontSize: '30px', color: hoveredIndex === index ? "black" : "#999999", cursor: "pointer" }}
+                    onClick={(e)=>handleClick(complaint.complaint_id,complaint.is_completed)} />):" "}
                 </div>
               </div>
             </div>

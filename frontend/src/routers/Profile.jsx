@@ -9,12 +9,18 @@ import Footer from  "../components/Footer";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import backendapi from "../apis/backendapi";
+import { useNavigate } from "react-router-dom";
 function Profile(){
-  const { headers } = useAuth();
+  const { headers,logout} = useAuth();
   const [profile, setProfile] = useState({});
   const [hostelData,setHostelData] = useState({});
   const [messData,setMessData]=useState({});
   const [loading, setLoading] = useState(true);
+  const navigate=useNavigate();
+  async function handleLogOut(){
+     await logout();
+     navigate("/signIn/student");
+  } 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -100,7 +106,7 @@ function Profile(){
               <ul className="nav nav-pills flex-column">
                       <li className="nav-item"><a className="nav-link active mt-2" style={{backgroundColor:"#F0F3FF",color:"#89817f"}} href="#"><PersonIcon/>{" "}Profile </a></li>
                       <li className="nav-item"> <a className="nav-link" style={{marginTop:"-10px",backgroundColor:"white"}} href="/student/:id/profile/edit"><EditNoteIcon/> Edit profile </a></li>
-                      <li className="nav-item"> <a className="nav-link"  href="#" style={{color:"red",marginTop:"-10px",backgroundColor:"white"}}><ExitToAppRoundedIcon/> Sign Out </a></li>
+                      <li className="nav-item"> <a className="nav-link" onClick={handleLogOut} style={{color:"red",marginTop:"-10px",backgroundColor:"white"}}><ExitToAppRoundedIcon/> Sign Out </a></li>
              </ul>
 
             </div>
