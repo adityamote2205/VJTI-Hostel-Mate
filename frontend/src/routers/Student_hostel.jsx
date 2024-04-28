@@ -18,7 +18,7 @@ function StudentHostel() {
       try {
         const response = await backendapi.get("/complaint/hostel/student", { headers });
         setComplaints(response.data);
-        console.log(response.data);
+        console.log(complaints.length);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching complaints:", err);
@@ -72,10 +72,10 @@ function StudentHostel() {
        
     <div className="mt-1" style={{paddingleft:"10px", backgroundColor:'white' ,marginBottom:"-10px"}}>
       <h2 className=" pt-5 pr-5"><strong><ErrorOutlineRoundedIcon style={{marginLeft:'80px'}}/> Your Hostel Complaints</strong></h2>
-      <hr style={{marginLeft:'80px',marginRight:'80px'}}/>
-      <Complaints complaints={complaints} />
-
-      <hr style={{marginLeft:'80px',marginRight:'80px'}}/>
+      {complaints.length!==0?<hr style={{marginLeft:'80px',marginRight:'80px'}}/>:" "}
+      {/* {complaints.length==0?<div className="container mb-7 mt-3 ml-7 pl-5" style={{marginRight:"90px",paddingLeft:"20px"}}>No complaints registered yet.</div>:<Complaints/>} */}
+      <Complaints complaints={complaints}/>
+      {complaints.length!==0?<hr style={{marginLeft:'80px',marginRight:'80px'}}/>:" "}
       <div className="container mr-3 ml-3 mt-5" style={{ marginLeft: "200px",marginRight: "-100px"}}>
      <ComplaintForm/>
      </div>

@@ -101,7 +101,6 @@ export const getStudentMessComplaint=asyncWrapper(async(req,res)=>{
       const {user_id,user_role}=decodedToken;
       if(user_role=="student"){
            const result=await pool.query("SELECT * FROM mess_complaints WHERE student_id= $1",[user_id]);
-           console.log(result.rows);
            return res.json(result.rows);
       }
       else{
@@ -157,7 +156,7 @@ export const deleteStudentMessComplaint=asyncWrapper(async(req,res)=>{
              console.log("Image deleted successfully");
          }
        const result=await pool.query("DELETE FROM mess_complaints WHERE complaint_id=$1 AND student_id=$2 ",[complaint_id,user_id]);
-       console.log(result);
+       
        if(result.rowCount==0){
          return res.json({status:"You are not authorised to delete this complaint"});
        }

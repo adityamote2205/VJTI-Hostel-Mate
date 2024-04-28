@@ -11,7 +11,6 @@ pool.connect();
 
 export const studentLogin=asyncWrapper(async(req,res)=>{
     const { email,password}=req.body;
-    console.log(req.body);
     try{
         const student=await pool.query("SELECT * FROM students WHERE email=$1",[email]);
         if(student.rows.length===0){
@@ -22,7 +21,6 @@ export const studentLogin=asyncWrapper(async(req,res)=>{
             return res.status(401).json("Invalid Password!");
         }
         const jwtToken = jwtGenerator(student.rows[0].id, 'student');
-        console.log({jwtToken});
         return res.json({ jwtToken });
     }
     catch(err){

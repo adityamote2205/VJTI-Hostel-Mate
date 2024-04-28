@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import "../profile.css";
 import PersonIcon from '@mui/icons-material/Person';
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -7,8 +7,46 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import BrandComponent from "../components/BrandComponent";
 import Footer from  "../components/Footer";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import backendapi from "../apis/backendapi";
 function Profile(){
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { headers } = useAuth();
+  const [profile, setProfile] = useState({});
+  const [hostelData,setHostelData] = useState({});
+  const [messData,setMessData]=useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await backendapi.get("/profile/student", { headers });
+        console.log(response.data);
+        setProfile({name:response.data.profileData.name,
+                    email:response.data.profileData.email,
+                    gender:response.data.profileData.gender,
+                    reg_no:response.data.profileData.reg_no,
+                    room_no: response.data.profileData.room_no,
+                    year:response.data.profileData.year,
+                   branch:response.data.profileData.branch,
+                    block:response.data.profileData.block});        
+        setHostelData({total_count:response.data.hostelData.total_count,
+                       completed_count:response.data.hostelData.completed_count,
+                        pending_count:response.data.hostelData.pending_count});
+        setMessData({total_count:response.data.messData.total_count,
+                      completed_count:response.data.messData.completed_count,
+                      pending_count:response.data.messData.pending_count});
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching profile Data:", err);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [headers]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Render loading indicator while fetching data
+  }
     return(
       <>
         <nav style={{ backgroundColor: '#F0F3FF', borderBottom: '1px solid #dee2e6', padding: '10px 0' }}>
@@ -55,8 +93,8 @@ function Profile(){
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
               </svg>
-                <h1 style={{marginTop:"20px",fontSize:"35px"}}>Pradnya Khabale</h1>
-                <p style={{fontSize:"15px"}}>pjkhabale_b21@et.vjti.ac.in</p>
+                <h1 style={{marginTop:"20px",fontSize:"35px"}}>{profile.name}</h1>
+                <p style={{fontSize:"15px"}}>{profile.email}</p>
               </div>
 
               <ul className="nav nav-pills flex-column">
@@ -76,25 +114,25 @@ function Profile(){
                 <h1>User Details</h1>
                 <div className="row">
                   <div className="bio-row">
-                    <p><span>Full Name </span>: Pradnya Khabale</p>
+                    <p><span>Full Name </span>: {profile.name}</p>
                   </div>
                   <div className="bio-row">
-                    <p><span>Reg. No </span>: 211091046</p>
+                    <p><span>Reg. No </span>: {profile.reg_no}</p>
                   </div>
                   <div className="bio-row">
-                    <p><span>Year</span>: III</p>
+                    <p><span>Year</span>: {profile.year}</p>
                   </div>
                   <div className="bio-row">
-                    <p><span>Branch</span>: EXTC</p>
+                    <p><span>Branch</span>: {profile.branch}</p>
                   </div>
                   <div className="bio-row">
-                    <p><span>Block </span>: E</p>
+                    <p><span>Block </span>: {profile.block}</p>
                   </div>
                   <div className="bio-row">
-                    <p><span>Room No </span>: 507</p>
+                    <p><span>Room No </span>: {profile.room_no}</p>
                   </div>
                   <div className="bio-row">
-                    <p><span>Email </span>: pjkhabale_b21@et.vjti.ac.in</p>
+                    <p><span>Email </span>: {profile.email}</p>
                   </div>
                 </div>
               </div>
@@ -108,16 +146,16 @@ function Profile(){
                       
                       <div className="text-center" >
                         <h4 className="mb-3"style={{color:"#836FFF"}}>Hostel Grievance Overview</h4>
-                        <p className="mb-0">Total Complaints :20</p>
-                        <p className="mb-0">Completed Count :12</p>
-                        <p className="mb-3"style={{color:"red"}}>pending Complaints :8</p>
+                        <p className="mb-0">Total Complaints :{hostelData.total_count}</p>
+                        <p className="mb-0">Completed Count :{hostelData.completed_count}</p>
+                        <p className="mb-3"style={{color:"red"}}>pending Complaints :{hostelData.pending_count}</p>
                       </div>
                       <PieChart
                          series={[
                                     {
                                         data: [
-                                         { id: 0, value: 10, label: 'Completed' },
-                                         { id: 1, value: 15, label: 'Pending' },
+                                         { id: 0, value: hostelData.completed_count, label: 'Completed' },
+                                         { id: 1, value: hostelData.pending_count, label: 'Pending' },
                                         
                                               ],
                                     },
@@ -134,16 +172,16 @@ function Profile(){
                       
                     <div className="text-center" >
                         <h4 className="mb-3"style={{color:"#836FFF"}}>Mess Grievance Overview</h4>
-                        <p className="mb-0">Total Complaints :20</p>
-                        <p className="mb-0">Completed Count :12</p>
-                        <p className="mb-3"style={{color:"red"}}>pending Complaints :8</p>
+                        <p className="mb-0">Total Complaints :{messData.total_count}</p>
+                        <p className="mb-0">Completed Count :{messData.completed_count}</p>
+                        <p className="mb-3"style={{color:"red"}}>pending Complaints :{messData.pending_count}</p>
                       </div>
                       <PieChart
                          series={[
                                     {
                                         data: [
-                                         { id: 0, value: 10, label: 'Completed' },
-                                         { id: 1, value: 15, label: 'Pending' },
+                                         { id: 0, value: messData.completed_count, label: 'Completed' },
+                                         { id: 1, value: messData.pending_count, label: 'Pending' },
                                         
                                               ],
                                     },

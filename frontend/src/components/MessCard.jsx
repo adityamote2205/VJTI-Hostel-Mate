@@ -3,8 +3,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import Button from '@mui/material/Button';
 import backendapi from '../apis/backendapi';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 function formatDateOnly(dateString) {
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
   return new Date(dateString).toLocaleDateString('en-US', options);
@@ -17,7 +16,7 @@ function formatDate(dateString) {
 
 
 
-function WardenComplaints({ complaints }) {
+function MessCard({ complaints }) {
   let location=useLocation();
   const {headers} = useAuth();
   const [openImageIndex, setOpenImageIndex] = useState(null);
@@ -35,7 +34,7 @@ function WardenComplaints({ complaints }) {
   const handleClick = async (complaint_id) => {
       try{
 
-        const result = await backendapi.put(`/complaint/hostel/rector/${complaint_id}`,{},{headers});
+        const result = await backendapi.put(`/complaint/mess/rector/${complaint_id}`,{},{headers});
         console.log(result);
         navigate("/");
         setTimeout(() => {
@@ -59,7 +58,7 @@ function WardenComplaints({ complaints }) {
           <div key={index} className="col-sm-4 ml-5 mr-5">
             <div className="card mt-3 shadow" style={{ backgroundColor: "#FAF9F6" }}>
               <div className="card-body">
-                <h5 className="card-title" style={{ color: "black", fontWeight: "bold" }}>{complaint.topic} (Room No: {complaint.room_no})</h5>
+                <h5 className="card-title" style={{ color: "black", fontWeight: "bold" }}>{complaint.topic}</h5>
                 <p className="card-text" style={{ fontSize: "15px" }}>Created on {formatDateOnly(complaint.created_on)} by {complaint.name}.</p>
                 {complaint.is_completed === 'yes' && complaint.completed_on && (
                   <p className="card-text" style={{ fontSize: "15px", marginTop: "-15px" }}>Completed on {formatDate(complaint.completed_on)}</p>
@@ -100,4 +99,4 @@ function WardenComplaints({ complaints }) {
   );
 }
 
-export default WardenComplaints;
+export default MessCard;

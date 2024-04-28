@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState,useEffect}from "react";
 import "../profile.css";
 import PersonIcon from '@mui/icons-material/Person';
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -6,8 +6,42 @@ import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import { PieChart } from '@mui/x-charts/PieChart';
 import BrandComponent from "../components/BrandComponent";
 import {NavLink} from "react-router-dom";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
+import backendapi from "../apis/backendapi";
+import {useAuth} from "../context/AuthContext"
 function RectorProfile(){
+  const { headers } = useAuth();
+  const [profile, setProfile] = useState({});
+  const [hostelData,setHostelData] = useState({});
+  const [messData,setMessData]=useState({});
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await backendapi.get("/profile/rector", { headers });
+        console.log(response.data);
+        setProfile({name:response.data.profileData.name,
+                    email:response.data.profileData.email,
+                    gender:response.data.profileData.gender,
+                    block:response.data.profileData.block});        
+        setHostelData({total_count:response.data.hostelData.total_count,
+                       completed_count:response.data.hostelData.completed_count,
+                        pending_count:response.data.hostelData.pending_count});
+        setMessData({total_count:response.data.messData.total_count,
+                      completed_count:response.data.messData.completed_count,
+                      pending_count:response.data.messData.pending_count});
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching profile Data:", err);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [headers]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Render loading indicator while fetching data
+  }
     return(
       <>
       <nav style={{ backgroundColor: '#F0F3FF', borderBottom: '1px solid #dee2e6', padding: '10px 0' }}>
@@ -54,8 +88,8 @@ function RectorProfile(){
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
               </svg>
-                <h1 style={{marginTop:"20px",fontSize:"35px"}}>Pradnya Khabale</h1>
-                <p style={{fontSize:"15px"}}>pjkhabale_b21@et.vjti.ac.in</p>
+                <h1 style={{marginTop:"20px",fontSize:"35px"}}>{profile.name}</h1>
+                <p style={{fontSize:"15px"}}>{profile.email}</p>
               </div>
 
               <ul className="nav nav-pills flex-column mt-2">
@@ -75,40 +109,40 @@ function RectorProfile(){
                 <h1 className="pt-3">User Details</h1>
                 <div className="row mt-3 pt-3">
                   <div className="bio-row">
-                    <p><span>Full Name </span>: Pradnya Khabale</p>
+                    <p><span>Full Name </span>: {profile.name}</p>
                   </div>
                   <div className="bio-row">
-                    <p><span>Block </span>: E</p>
+                    <p><span>Block </span>: {profile.block}</p>
                   </div>
                   <div className="bio-row">
-                    <p><span>Gender </span>: female</p>
+                    <p><span>Gender </span>: {profile.gender}</p>
                   </div>
                   <div className="bio-row">
-                    <p><span>Email </span>: pjkhabale_b21@et.vjti.ac.in</p>
+                    <p><span>Email </span>: {profile.email}</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <hr style={{marginRight:'10px', marginLeft:"10px"}}/>
+            <hr/>
             <div>
               <div className="row mt-4">
-                <div className="col-md-5 pt-5 pb-5 mb-3 pl-5 pr-5 "style={{backgroundColor:"#F0F3FF",marginRight:"30px",marginLeft:"40px" }}>
+                <div className="col-md-5 pt-5 pb-5 mb-2 pl-5 pr-5 "style={{backgroundColor:"#F0F3FF",marginRight:"50px",marginLeft:"16px" ,width:'500px' }}>
                   <div className="panel ">
                     <div className="panel-body text-center" >
                       
                       <div className="text-center" >
                         <h4 className="mb-3"style={{color:"#836FFF"}}>Hostel Grievance Overview</h4>
-                        <p className="mb-0">Grievance Count:20</p>
-                        <p className="mb-0">Resolved Grievance :12</p>
-                        <p className="mb-3"style={{color:"red"}}>Unresolved Grievance :8</p>
+                        <p className="mb-0">Grievance Count:{hostelData.total_count}</p>
+                        <p className="mb-0">Resolved Grievance :{hostelData.completed_count}</p>
+                        <p className="mb-3"style={{color:"red"}}>Unresolved Grievance :{hostelData.pending_count}</p>
                       </div>
                       <PieChart
                          series={[
                                     {
                                         data: [
-                                         { id: 0, value: 10, label: 'Completed' },
-                                         { id: 1, value: 15, label: 'Pending' },
+                                         { id: 0, value: hostelData.completed_count, label: 'Completed' },
+                                         { id: 1, value: hostelData.pending_count, label: 'Pending' },
                                         
                                               ],
                                     },
@@ -119,22 +153,22 @@ function RectorProfile(){
                     </div>
                   </div>
                 </div>
-                <div className="col-md-5 pt-5 pb-5 mb-3 pl-2 pr-5 "style={{backgroundColor:"#F0F3FF",marginRight:"30px",marginLeft:"40px"}}>
+                <div className="col-md-5 pt-5 pb-5 mb-2 pl-2 pr-5 "style={{backgroundColor:"#F0F3FF",marginRight:"16px",width:"500px"}}>
                   <div className="panel">
                     <div className="panel-body" >
                       
                     <div className="text-center" >
                         <h4 className="mb-3"style={{color:"#836FFF"}}>Mess Grievance Overview</h4>
-                        <p className="mb-0">Grievance Count :20</p>
-                        <p className="mb-0">Resolved Grievance :12</p>
-                        <p className="mb-3"style={{color:"red"}}>Unresolved Grievance :8</p>
+                        <p className="mb-0">Grievance Count :{messData.total_count}</p>
+                        <p className="mb-0">Resolved Grievance :{messData.completed_count}</p>
+                        <p className="mb-3"style={{color:"red"}}>Unresolved Grievance :{messData.pending_count}</p>
                       </div>
                       <PieChart
                          series={[
                                     {
                                         data: [
-                                         { id: 0, value: 10, label: 'Completed' },
-                                         { id: 1, value: 15, label: 'Pending' },
+                                         { id: 0, value: messData.completed_count, label: 'Completed' },
+                                         { id: 1, value: messData.pending_count, label: 'Pending' },
                                         
                                               ],
                                     },

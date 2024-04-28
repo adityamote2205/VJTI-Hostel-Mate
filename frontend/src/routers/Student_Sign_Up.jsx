@@ -73,7 +73,7 @@ function StudentSignUp() {
     }
 
     try {
-      const response = await backendapi.post("/register/student", {
+      const response = await backendapi.post("", {
         name,
         gender,
         year,

@@ -70,12 +70,12 @@ export const getStudentProfileEdit=asyncWrapper(async(req,res)=>{
 
 export const updateStudentProfile=asyncWrapper(async(req,res)=>{
     const token=req.headers.authorization;
-    const {name,gender,year,block,branch,room_no,reg_no,email} =req.body;
+    const {name,year,block,branch,room_no,email} =req.body;
     try{
        const decodedToken=jwt.verify(token,process.env.JWTSECRET);
        const {user_id,user_role}=decodedToken;
        if(user_role=="student"){
-          await pool.query("UPDATE students SET name=$1,gender=$2,year=$3,block=$4,branch=$5,room_no=$6,reg_no=$7,email=$8 WHERE id=$9",[name,gender,year,block,branch,room_no,reg_no,email,user_id]);
+          await pool.query("UPDATE students SET name=$1,year=$2,block=$3,branch=$4,room_no=$5,email=$6 WHERE id=$7",[name,year,block,branch,room_no,email,user_id]);
           res.status(200).json("updated Succesfully!!");
        }
        else{

@@ -1,44 +1,77 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { NativeSelect } from "@mui/material";
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import {useNavigate} from "react-router-dom";
 import BrandComponent from "../components/BrandComponent";
 import Footer from "../components/Footer";
+import { useAuth } from "../context/AuthContext";
+import backendapi from "../apis/backendapi";
 function RectorProfileEdit(){
     const navigate=useNavigate();
       const[name,setName]=useState("");
       const[email,setEmail]=useState("");
       const[block,setBlock]=useState("Update Block");
       const [errors, setErrors] = useState({});
-
-      function handleSubmit() {
+      const[loading,setLoading]=useState(true);
+      const {headers}=useAuth();
+      async function handleSubmit() {
           let errors = {};
-  
           if (!name) {
               errors.name = "Name is required";
           }
-  
+          const collegeEmailRegex1 = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2}\.vjti\.ac\.in$/;
+          const collegeEmailRegex2 = /^[a-zA-Z0-9._%+-]+@vjti\.ac\.in$/;
           if (!email) {
               errors.email = "Email is required";
           }
-        //   } else if (!isValidEmail(email)) {
-        //       errors.email = "Invalid email format";
-        //   }
-  
+          
+          else if (!collegeEmailRegex1.test(email) && !collegeEmailRegex2.test(email)) {
+            errors.email="Please enter a valid college email address.";
+          }
           if (block === "Update Block") {
               errors.block = "Block is required";
           }
-          // If there are errors, set them and return
+           // If there are errors, set them and return
           if (Object.keys(errors).length > 0) {
               setErrors(errors);
               return;
           }
-  
-          // If no errors, navigate to next page
-          navigate("/rector/:id/profile");
+          try{
+            const response=await backendapi.put("/profile/rector/edit",{
+              name:name,
+              email:email,
+              block:block
+            },{headers});
+            console.log(response);
+            navigate("/rector/:id/profile");
+          }
+          catch(err){
+            console.error("Error during updating profile Data:", err);
+            setLoading(false);
+          }
+         
       }
-     
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await backendapi.get("/profile/rector/edit", { headers });
+            setName(response.data.profileData.name);
+            setEmail(response.data.profileData.email);
+            setBlock(response.data.profileData.block); 
+            setLoading(false);
+            console.log(response.data);
+          } catch (err) {
+            console.error("Error fetching rector profile data:", err);
+            setLoading(false);
+          }
+        };
+        fetchData();
+      }, [headers]);
+    
+      if (loading) {
+        return <div>Loading...</div>; // Render loading indicator while fetching data
+      }
     return(
       <>
       <nav style={{ backgroundColor: '#F0F3FF', borderBottom: '1px solid #dee2e6', padding: '10px 0' }}>
@@ -73,8 +106,8 @@ function RectorProfileEdit(){
               <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
               <div className="form-group">
                 <label htmlFor="block">Block</label>
-                <NativeSelect name="block" className="col=md-12" style={{ width: '100%' }} value={block} onChange={(e)=>{setBlock(e.target.value)}} inputProps={{ style: { color: '#A0A0A0',paddingLeft:"10px" } }}>
-                <option value="">Update Block</option>
+                <NativeSelect name="block" className="col=md-12" style={{ width: '100%' }} value={block} onChange={(e)=>{setBlock(e.target.value)}} inputProps={{ style: { color: 'black',paddingLeft:"10px" } }}>
+                <option value="Update Block">Update Block</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>

@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams,useNavigate,useLocation} from "react-router-dom";
 import { Card, Form} from 'react-bootstrap';
 import Input from '@mui/material/Input';
 import TextField from '@mui/material/TextField';
@@ -7,6 +7,9 @@ import Button from '@mui/material/Button';
 import NativeSelect from '@mui/material/NativeSelect';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import AssuredWorkloadIcon from '@mui/icons-material/AssuredWorkload';
+import backendapi from '../apis/backendapi';
+import { useAuth } from '../context/AuthContext';
+
 function ComplaintMess() {
     const {id} =useParams();
     console.log(id);
@@ -16,6 +19,9 @@ function ComplaintMess() {
     const [complaint,setComplaint]=useState("");
     const [selectedFile, setSelectedFile] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
+    const {authToken} =useAuth();
+    let navigate=useNavigate();
+    let location = useLocation();
     const handleFileChange = (e) => {
       setSelectedFile(e.target.files[0]);
     };
@@ -31,23 +37,34 @@ function ComplaintMess() {
         event.target.rows = currentRows;
         setRows(currentRows);
       };
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
         if (!complaintTopic  || !complaintType || !complaint) {
           setErrorMessage('Please fill in all required fields.');
         } else {
           // If all fields are filled, you can proceed with your logic here
-          const currentDate = getCurrentDate();
-          console.log('Submit data:', {
-            complaintTopic,
-            complaintType,
-            complaint,
-            selectedFile, // This will be null if no file is selected
-            currentDate
-          });
+          const currentDate = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-');
+          const formData = new FormData();
+          formData.append('image', selectedFile);
+          formData.append('topic',complaintTopic);
+          formData.append('complaint_type',complaintType);
+          formData.append('complaint',complaint);
+          formData.append('created_on',currentDate);
+           try{
+              const response = await backendapi.post("/complaint/mess/student",formData,{headers: authToken ? { "authorization": authToken } : {}});
+              console.log(response);
+              navigate("/");
+             setTimeout(() => {
+             navigate(location.pathname);
+             }, 0); 
+             }
+           catch(err){
+            console.error("Error posting complaints:", err);
+           }
           setErrorMessage('');
         }
       };
+          
       const getCurrentDate = () => {
         const date = new Date();
         const options = { year: 'numeric', month: 'short', day: 'numeric' };

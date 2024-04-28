@@ -1,11 +1,36 @@
-import React from "react";
+import React,{useState} from "react";
 import ComplaintMess from "../components/ComplaintMess";
 import HubTwoToneIcon from '@mui/icons-material/HubTwoTone';
-import Complaints from "../components/Complaints";
+import Complaints from "../components/complaintMessCard";
 import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
 import BrandComponent from "../components/BrandComponent";
 import Footer from "../components/Footer";
+import { useEffect } from "react";
+import {useAuth} from "../context/AuthContext";
+import backendapi from "../apis/backendapi";
+import ComplaintMessCard from "../components/complaintMessCard";
 function StudentMess(){
+  const { headers } = useAuth();
+  const [complaints, setComplaints] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await backendapi.get("/complaint/mess/student", { headers });
+        setComplaints(response.data);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching complaints:", err);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [headers]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Render loading indicator while fetching data
+  }
     return(
       <div>
         <nav style={{ backgroundColor: '#F0F3FF', borderBottom: '1px solid #dee2e6', padding: '10px 0' }}>
@@ -44,11 +69,11 @@ function StudentMess(){
             </nav>
       <div className="mt-1 mb-5" style={{paddingleft:"10px", backgroundColor:'white' ,marginBottom:"-10px"}}>
       <h2 className=" pt-5 pr-5"><strong><ErrorOutlineRoundedIcon style={{marginLeft:'80px'}}/> Your Mess Complaints</strong></h2>
-      <hr style={{marginLeft:'80px',marginRight:'80px'}}/>
-      <Complaints/>
-
-      <hr style={{marginLeft:'80px',marginRight:'80px'}}/>
-      <div className="container mr-3 ml-3 mt-5" style={{ marginLeft: "150px",marginRight: "100px"}}>
+      {complaints.length!==0?<hr style={{marginLeft:'80px',marginRight:'80px'}}/>:" "}
+      {/* {complaints.length==0?<div className="container mb-7 mt-3 ml-7 pl-5" style={{marginRight:"90px",paddingLeft:"20px"}}>No complaints registered yet.</div>:<Complaints/>} */}
+       <ComplaintMessCard complaints={complaints}/>
+      {complaints.length!==0?<hr style={{marginLeft:'80px',marginRight:'80px'}}/>:" "}
+      <div className="container mr-3 ml-3 mt-5" style={{ marginLeft: "200px",marginRight: "-100px"}}>
      <ComplaintMess/>
      </div>
      </div>

@@ -17,16 +17,16 @@ function formatDateOnly(dateString) {
   return date.toLocaleDateString('en-US', options);
 }
 
-function Complaints({ complaints }) {
+function ComplaintMessCard({ complaints }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
     const {headers} = useAuth();
     let navigate=useNavigate();
     let location=useLocation();
-   
+   console.log(complaints.length);
   const handleClick = async (complaint_id) => {
     // Function body
     try{
-     const response= await backendapi.delete(`/complaint/hostel/student/${complaint_id}`,{headers});
+     const response= await backendapi.delete(`/complaint/mess/student/${complaint_id}`,{headers});
      console.log(response);
      navigate("/");
      setTimeout(() => {
@@ -37,12 +37,12 @@ function Complaints({ complaints }) {
       console.error("Error fetching complaints:", err);
     }
   };
-  
   if(complaints.length===0){
     return(
         <div className="container mb-7 mt-3 ml-7 pl-5" style={{marginRight:"90px",paddingLeft:"20px"}}>No complaints registered yet.</div>
     )
   }
+
   return (
     <div className="container mb-5">
       <div className="row" style={{ display: "flex", alignItems: "stretch" }}>
@@ -79,4 +79,4 @@ function Complaints({ complaints }) {
   );
 };
 
-export default Complaints;
+export default ComplaintMessCard;

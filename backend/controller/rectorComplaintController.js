@@ -56,6 +56,7 @@ export const putRectorComplaint=asyncWrapper(async(req,res)=>{
          const decodedToken=jwt.verify(token,process.env.JWTSECRET);
          const{user_id,user_role}=decodedToken;
          const complaint_id=req.params.id;
+         console.log(complaint_id);
          if(user_role=="rector"){
               const response=await pool.query('SELECT is_completed FROM hostel_complaints WHERE complaint_id=$1',[complaint_id]);
              if(response.rows[0].is_completed=='no'){
