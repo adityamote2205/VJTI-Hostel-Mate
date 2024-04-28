@@ -87,11 +87,12 @@ function SignIn() {
       const response = await backendapi.post("/login/student", { email, password });
       const { jwtToken } = response.data;
       if (jwtToken) {
-        await login(jwtToken);
+        login(jwtToken);
         navigate("/");
       }
     } catch (error) {
       console.error("Login failed:", error);
+      setError("Login failed !! Please check your email and password.");
       // Handle login error (e.g., display error message)
     }
   };

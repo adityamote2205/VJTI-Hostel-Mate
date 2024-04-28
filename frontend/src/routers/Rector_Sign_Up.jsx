@@ -117,6 +117,7 @@ function RectorSignUp() {
                         <option value="C">C</option>
                         <option value="D">D</option>
                         <option value="E">E</option>
+                        <option value="PG Boys' Hostel">PG Boys' Hostel</option>
                       </Form.Control>
                     </Form.Group>
                   </Col>

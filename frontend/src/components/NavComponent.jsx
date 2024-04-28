@@ -4,10 +4,10 @@ import React from 'react';
 import { useAuth } from '../context/AuthContext';
 
 const NavComponent = () => {
-    const { authToken, isTokenValid } = useAuth();
+    const { authToken, isStudentTokenValid } = useAuth();
 
-    const hostelLink = isTokenValid ? "/hostel/:id/student" : "/signIn/student";
-    const messLink = isTokenValid ? "/mess/:id/student" : "/signIn/student";
+    const hostelLink = isStudentTokenValid ? "/hostel/:id/student" : "/signIn/student";
+    const messLink = isStudentTokenValid ? "/mess/:id/student" : "/signIn/student";
 
     return (
         <ul className="nav nav-tabs">

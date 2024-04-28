@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect , useState} from 'react';
 import Header from '../components/Header'
 import BrandComponent from '../components/BrandComponent'
 import NavComponent from '../components/NavComponent';
@@ -9,8 +9,54 @@ import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
 import ApprovalIcon from '@mui/icons-material/Approval';
 import Footer from '../components/Footer';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import LoginIcon from '@mui/icons-material/Login';
+
 
 const Rector_Home = () => {
+
+  const navigate = useNavigate();
+  const {authToken, isRectorTokenValid } = useAuth();
+
+  // useEffect(() => {
+    
+  //   // Redirect to sign-in page if token is not valid
+  //   console.log(isRectorTokenValid);
+  //   if (!(authToken && isRectorTokenValid)) {
+  //     navigate("/signIn/rector");
+  //   }
+  // }, [isRectorTokenValid, navigate]);
+
+  // const navigate = useNavigate();
+  // const { isRectorTokenValid } = useAuth();
+  // const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   const checkTokenValidity = async () => {
+  //     if (!isRectorTokenValid) {
+  //       navigate("/signIn/rector");
+  //     } else {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   checkTokenValidity();
+  // }, [isRectorTokenValid, navigate]);
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>; // or any loading indicator you prefer
+  // }
+  function handleProfile(){
+      navigate("/rector/:id/profile");
+  }
+ function handleLogin(){
+    navigate("/signIn/rector");
+ }
+ function handleSignUp(){
+    navigate("/signUp/rector");
+ }
   return (
     <div>
       <nav style={{ backgroundColor: '#F0F3FF', borderBottom: '1px solid #dee2e6', padding: '10px 0' }}>
@@ -26,8 +72,8 @@ const Rector_Home = () => {
             <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Check Grievances</a>
                 <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="/hostel/:id/rector">Hostel</a></li>
-                    <li><a className="dropdown-item" href="/mess/:id/rector">Mess</a></li>
+                    <li><a className="dropdown-item" href={isRectorTokenValid ? "/hostel/:id/rector" : "/signIn/rector"}>Hostel</a></li>
+                    <li><a className="dropdown-item" href={isRectorTokenValid ? "/mess/:id/rector" : "/signIn/rector"}>Mess</a></li>
                 </ul>
             </li>
             <li className="nav-item">
@@ -38,15 +84,34 @@ const Rector_Home = () => {
             </li>
         </ul>
 
-        <ul class="nav ">
-  <li class="nav-item">
-    <a style={{color:'black'}} class="nav-link " href="/rector/:id/profile">
-    <svg style={{marginRight:'9px'}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-</svg>Rector Profile</a>
+        <ul className="nav">
+  <li>
+    <div className="d-flex align-items-center" style={{ marginLeft: '-8px' }}>
+      {/* Any content you want to display before the buttons */}
+    </div>
+    {authToken && isRectorTokenValid ? (
+      <button type="button" onClick={handleProfile} className="btn btn-outline-dark me-3">
+        <PersonOutlineIcon /> Rector Profile
+      </button>
+    ) : (
+      <div className="d-flex align-items-center">
+  <div className="btn-group me-3">
+    <button type="button" onClick={handleSignUp} className="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      SignUp
+    </button>
+    <ul className="dropdown-menu">
+      <li><a className="dropdown-item" href="/signUp/student">SignUp as a Student</a></li>
+      <li><a className="dropdown-item" href="/signUp/rector">SignUp as a Rector</a></li>
+    </ul>
+  </div>
+  <button type="button" onClick={handleLogin} className="btn btn-outline-secondary login-btn d-flex align-items-center">
+    <LoginIcon style={{ marginRight: '10px' }} />
+    Login
+  </button>
+</div>
+
+    )}
   </li>
-  
 </ul>
 
                 </div>
