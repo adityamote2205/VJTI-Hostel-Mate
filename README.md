@@ -24,8 +24,8 @@ VJTI Hostel-Mate is a web application designed to streamline communication betwe
 ## Technology Stack
 
 VJTI Hostel-Mate is built using the PERN stack:
-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/640px-Postgresql_elephant.svg.png" width="35"> **PostgreSQL**: For the database to store user information, complaints, and other relevant data.
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/640px-Postgresql_elephant.svg.png" width="35">  **PostgreSQL** : For the database to store user information, complaints, and other relevant data.
 
-- <img src="https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.png" width="40"> **Express.js**: A web application framework for building APIs to handle server-side logic.
-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="40"> **React.js**: A JavaScript library for building user interfaces, providing a responsive and interactive frontend.
-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="40"> **Node.js**: A runtime environment for executing JavaScript code on the server side.
+- <img src="https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.png" width="40">  **Express.js** : A web application framework for building APIs to handle server-side logic.
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="40">  **React.js** : A JavaScript library for building user interfaces, providing a responsive and interactive frontend.
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="40">  **Node.js** : A runtime environment for executing JavaScript code on the server side.
