@@ -29,4 +29,4 @@ VJTI Hostel-Mate is built using the PERN stack:
 - <img src="https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.png" width="40">  **Express.js** : A web application framework for building APIs to handle server-side logic.
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="40">  **React.js** : A JavaScript library for building user interfaces, providing a responsive and interactive frontend.
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="40">  **Node.js** : A runtime environment for executing JavaScript code on the server side.
-- <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postman-icon.png" width="40"> **Postman**: For testing API endpoints and ensuring smooth communication between frontend and backend.
+- <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postman-icon.png" width="35"> **Postman**: For testing API endpoints and ensuring smooth communication between frontend and backend.
