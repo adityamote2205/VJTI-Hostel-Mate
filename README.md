@@ -13,13 +13,13 @@ VJTI Hostel-Mate is a web application designed to streamline communication betwe
 
 ## Features
 
-- **User Authentication**: Students and rectors can sign up and log in securely using JWT authentication.
-- **Differentiated Profiles**: Separate profiles for rectors and students to provide tailored experiences.
-- **About Us**: Information about the project and the team behind it.
-- **Contact Us**: Easily accessible contact information for reaching out to the administrators.
-- **Transparency**: Complaints include timestamps indicating when they were created by students and resolved by rectors.
-- **Image Sharing**: Students can attach images as proof when submitting complaints.
-- **Complaint Management**: Students can delete complaints before rectors mark them as completed if necessary.
+- **User Authentication** : Students and rectors can sign up and log in securely using JWT authentication.
+- **Differentiated Profiles** : Separate profiles for rectors and students to provide tailored experiences.
+- **Transparency** : Complaints include timestamps indicating when they were created by students and resolved by rectors.
+- **Image Sharing** : Students can attach images as proof when submitting complaints.
+- **Complaint Management** : Students can delete complaints before rectors mark them as completed if necessary.
+- **About Us** : Information about the project and the team behind it.
+- **Contact Us** : Easily accessible contact information for reaching out to the administrators.
 
 ## Technology Stack
 
