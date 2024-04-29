@@ -24,7 +24,7 @@ VJTI Hostel-Mate is a web application designed to streamline communication betwe
 ## Technology Stack
 
 VJTI Hostel-Mate is built using the PERN stack:
-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/640px-Postgresql_elephant.svg.png" width="20"> **PostgreSQL**: For the database to store user information, complaints, and other relevant data.
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/640px-Postgresql_elephant.svg.png" width="25"> **PostgreSQL**: For the database to store user information, complaints, and other relevant data.
 
 - **Express.js**: A web application framework for building APIs to handle server-side logic.
 - **React.js**: A JavaScript library for building user interfaces, providing a responsive and interactive frontend.
