@@ -1,4 +1,4 @@
-## VJTI Hostel-Mate
+# VJTI Hostel-Mate
 
 
 
