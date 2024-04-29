@@ -33,6 +33,8 @@ VJTI Hostel-Mate is built using the PERN stack:
 - <img src="https://seeklogo.com/images/J/json-web-tokens-jwt-io-logo-C003DEC47A-seeklogo.com.png" width="35">  **JWT (JSON Web Tokens)** : For secure authentication by generating and verifying tokens between the frontend and backend.
 
   ## Website Overview & Features
-  - Signup Page Student :
+  - **Signup Page Student** :
     
 ![student signup](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c1750779-649a-4844-bc47-5b5321b3fe4c)
+
+
