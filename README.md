@@ -2,7 +2,7 @@
 
 
 
-<div align="center">
+<div align="center" margin-botton="10px">
   <img src="https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/707c6600-4c5a-4aa8-a2aa-b5f46d3863b9" alt="Logo">
 </div>
 
