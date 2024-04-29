@@ -57,7 +57,7 @@ function StudentSignUp() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const {login,isTokenValid} = useAuth();
+  const {login} = useAuth(); //istokenvalid removed
 
   async function handleSubmit(event) {
     event.preventDefault();

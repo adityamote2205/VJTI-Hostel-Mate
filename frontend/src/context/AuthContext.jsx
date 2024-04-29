@@ -14,14 +14,16 @@ export const AuthProvider = ({ children }) => {
     const checkTokenValidity = async () => {
       if (authToken) {
         const { isValid, userRole } = await validateToken(authToken);
-        // console.log(isValid);
-        // console.log(userRole);
+         console.log(isValid);
+         console.log(userRole);
         if (userRole === "student") {
           setIsStudentTokenValid(isValid);
+         // console.log("student",isValid);
           setIsRectorTokenValid(false);
         } 
-        if (userRole === "rector") {
+        else if (userRole === "rector") {
           setIsRectorTokenValid(isValid);
+         // console.log("rector",isValid);
           setIsStudentTokenValid(false);
         }
       }

@@ -49,7 +49,12 @@ function MessCard({ complaints }) {
 
 
   }
-
+  if(complaints.length==0){
+    return(
+      <div className="container mb-7 mt-3 ml-7 pl-5" style={{marginRight:"90px",paddingLeft:"20px"}}>No complaints registered yet.</div>
+  )
+  }
+ 
   
   return (
     <div className="container">

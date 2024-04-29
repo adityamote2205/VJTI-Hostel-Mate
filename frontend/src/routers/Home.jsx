@@ -9,7 +9,7 @@ function Home() {
     // const [isLoggedIn, setIsLoggedIn] = useState(true);
     const { authToken,isStudentTokenValid,isRectorTokenValid } = useAuth();
 
-
+   
     return (
         <div>
             {/* <Header isLoggedIn={isLoggedIn} /> */}

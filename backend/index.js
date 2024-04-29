@@ -9,6 +9,7 @@ import rectorComplaintRoutes from "./routes/rectorComplaintRoutes.js";
 import studentProfileRoutes from "./routes/studentProfileRoutes.js";
 import rectorProfileRoutes from "./routes/rectorprofileRoutes.js";
 import validRoute from "./routes/validRoute.js";
+
 dotenv.config();
 const app=express();
 
@@ -23,6 +24,7 @@ app.use('/',rectorComplaintRoutes);
 app.use('/',studentProfileRoutes);
 app.use('/',rectorProfileRoutes);
 app.use('/',validRoute);
+
 app.listen(process.env.PORT,()=>{
      console.log(`server is runnning on port ${process.env.PORT}` );
 })

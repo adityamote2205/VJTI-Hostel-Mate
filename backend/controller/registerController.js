@@ -42,8 +42,9 @@ export const studentRegister = asyncWrapper(async (req, res) => {
         const bcryptPassword = await bcrypt.hash(req.body.password, salt);
         
         const newRector= await pool.query("INSERT INTO rectors(name,gender,block,email,password) values($1,$2,$3,$4,$5) RETURNING *",[name, gender, block, email,bcryptPassword]);
-        const jwtToken = jwtGenerator(newRector.rows[0].id, 'Rector');
-        return res.json({ jwtToken });
+        const jwtToken = jwtGenerator(newRector.rows[0].id, 'rector');
+        console.log("success");
+        res.status(200).json({ jwtToken });
     } catch (err) {
        console.error('Error registering rector:', err.message);
        res.status(500).send("Server error");

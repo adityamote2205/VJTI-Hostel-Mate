@@ -112,7 +112,7 @@ function RectorMess() {
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <hr style={{marginLeft:'80px',marginRight:'80px'}}/>
+                    {complaints.filter(filterComplaints).length!==0?<hr style={{ marginLeft: '80px', marginRight: '80px' }} />:""}
                     <MessCard className="pb-5" complaints={complaints.filter(filterComplaints)}/>
                 </div>
             </div>

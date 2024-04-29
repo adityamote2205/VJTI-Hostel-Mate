@@ -234,7 +234,7 @@ function RectorHostel() {
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <hr style={{ marginLeft: '80px', marginRight: '80px' }} />
+                    {complaints.filter(filterComplaints).length!==0?<hr style={{ marginLeft: '80px', marginRight: '80px' }} />:""}
                     {/* <WardenComplaints className="pb-5" complaints={filterComplaints()} /> */}
                     <WardenComplaints className="pb-5" complaints={complaints.filter(filterComplaints)} />
 

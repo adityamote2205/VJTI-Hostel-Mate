@@ -19,7 +19,7 @@ const Rector_Home = () => {
 
   const navigate = useNavigate();
   const {authToken, isRectorTokenValid } = useAuth();
-
+  //console.log("rector",isRectorTokenValid);
   // useEffect(() => {
     
   //   // Redirect to sign-in page if token is not valid
@@ -90,7 +90,7 @@ const Rector_Home = () => {
       {/* Any content you want to display before the buttons */}
     </div>
     {authToken && isRectorTokenValid ? (
-      <button type="button" onClick={handleProfile} className="btn btn-outline-dark me-3">
+      <button type="button" onClick={handleProfile} className="btn btn-outline-dark" >
         <PersonOutlineIcon /> Rector Profile
       </button>
     ) : (

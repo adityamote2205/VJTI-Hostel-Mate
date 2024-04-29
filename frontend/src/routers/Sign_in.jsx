@@ -1,40 +1,3 @@
-// import React, { useState,useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import "../styling.css";
-// import { Container, Row, Col,  Form } from "react-bootstrap";
-// import MailIcon from '@mui/icons-material/Mail';
-// import {  InputAdornment } from '@mui/material';
-// import Input from '@mui/material/Input';
-// import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
-// import Button from '@mui/material/Button';
-// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-// import SchoolIcon from '@mui/icons-material/School';
-// import { useNavigate ,useLocation} from "react-router-dom";
-
-
-// function SignIn() {
-//   const [redirecting, setRedirecting] = useState(false);
-//   const navigate = useNavigate();
-//   const location=useLocation();
-//   const path=location.pathname;
-//   const [showIcons, setShowIcons] = useState(false);
-//   const handleRedirect = (path) => {
-//     setRedirecting(true);
-//     console.log(redirecting);
-//     setTimeout(() => {
-//       navigate(path);
-//     }, 1000); // 2 seconds delay
-//   };
-//   useEffect(() => {
-//     // Set a timeout to show icons after 1.5 seconds
-//     const timeout = setTimeout(() => {
-//       setShowIcons(true);
-//     }, 300);
-
-//     // Cleanup function to clear the timeout
-//     return () => clearTimeout(timeout);
-//   }, []);
-
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "../styling.css";
@@ -64,7 +27,7 @@ function SignIn() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowIcons(true);
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -96,9 +59,10 @@ function SignIn() {
       // Handle login error (e.g., display error message)
     }
   };
+
   return (
-    <>
-        
+    <> 
+      
       <div className="outer-container">
         <Container className="login-container">
           <Row>
@@ -107,35 +71,26 @@ function SignIn() {
             </Col>
             <Col md="6" className="login">
               <Form className="w-50">
-              
-                <Form.Group className="mb-5 " >
+                <Form.Group className="mb-5 ">
                   <h3 className="mt-2 text-center">Welcome Back!</h3>
                   <h5 className="mb-3 text-center">Login to your Account </h5>
                 </Form.Group>
                 <Form.Group>
-                  {/* Centered div with large anchor tags */}
-                  <div className="d-flex justify-content-center mb-1"  style={{marginTop:"-30px"}}>
-                  {showIcons && (
-                    <>
-                  <Link to="/signIn/rector" className="icon-link" onClick={() => handleRedirect("/signIn/rector")} style={{marginRight: "10px",borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", height: "80px", width: "80px",  transition: "backgroundColor 0.3s", textDecoration: "none"}}><AccountCircleIcon style={{height:"60px",width:"60px",color:"#89817f",opacity: 1, transition: "opacity 1s ease",transition: "transform 0.5s ease"}}
-                 /> </Link>
-                  <Link to="/signIn/student" aria-current="page" className="icon-link" onClick={() => handleRedirect("/signIn/student")} style={{ backgroundColor:path==="/signIn/student"?"#836FFF":"#89817f" , marginLeft:"-5px",opacity: 1, transition: "opacity 1s ease",borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", height: "52px", width: "52px" ,marginTop:'15px',transition: "backgroundColor 0.3s", textDecoration: "none",transition: "transform 0.5s ease"}} 
-                 >
-                    <   SchoolIcon style={{ height: "38px", width: "38px", color: "white" }} />
+                  <div className="d-flex justify-content-center mb-1" style={{ marginTop: "-30px", opacity: showIcons ? 1 : 0, transition: "opacity 0.5s ease-in" }}>
+                    <Link to="/signIn/rector" className="icon-link" onClick={() => handleRedirect("/signIn/rector")} style={{ marginRight: "10px", borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", height: "80px", width: "80px", transition: "backgroundColor 0.3s", textDecoration: "none" }}><AccountCircleIcon style={{ height: "60px", width: "60px", color: "#89817f" }} /> </Link>
+                    <Link to="/signIn/student" aria-current="page" className="icon-link" onClick={() => handleRedirect("/signIn/student")} style={{ backgroundColor: path === "/signIn/student" ? "#836FFF" : "#89817f", marginLeft: "-5px", borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", height: "52px", width: "52px", marginTop: '15px', transition: "backgroundColor 0.3s", textDecoration: "none", transition: "transform 0.5s ease" }}>
+                      <SchoolIcon style={{ height: "38px", width: "38px", color: "white" }} />
                     </Link>
-                    </>
-                  )}
                   </div>
                 </Form.Group>
                 <Form.Group className="mb-3 mt-2" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                 
                   <Form.Control
                     type="email"
                     placeholder="Email"
                     as={Input}
                     value={email}
-                    onChange={(e)=>{setEmail(e.target.value)}}
+                    onChange={(e) => { setEmail(e.target.value) }}
                     id="input-with-icon-adornment"
                     endAdornment={
                       <InputAdornment position="end">
@@ -143,9 +98,7 @@ function SignIn() {
                       </InputAdornment>
                     }
                   />
-                  
                 </Form.Group>
-
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
@@ -153,26 +106,23 @@ function SignIn() {
                     placeholder="Password"
                     as={Input}
                     value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     id="input-with-icon-adornment"
                     endAdornment={
                       <InputAdornment position="end">
-                        <EnhancedEncryptionIcon/>
+                        <EnhancedEncryptionIcon />
                       </InputAdornment>
                     }
                   />
                 </Form.Group>
-                
                 {error && (
-                 <div className="mt-3 text-center">
-                 <div className=" text-danger error-message">{error}</div>
-                </div>
-                 )}
-
-
+                  <div className="mt-3 text-center">
+                    <div className=" text-danger error-message">{error}</div>
+                  </div>
+                )}
                 <Form.Group className="text-center mt-4 mb-2">
-                <Button 
-                   variant="contained"
+                  <Button
+                    variant="contained"
                     type="submit"
                     className="mb-3 mt-2 text-center hoverEffect"
                     onClick={handleLogin}
@@ -181,28 +131,23 @@ function SignIn() {
                     Login
                   </Button>
                 </Form.Group>
-
                 <span>
-                <Form.Group  className="mb-3 d-flex align-items-center justify-content-center">
-                
-                  <Form.Text className="text-muted">
-                    Don't have an account? 
-                    {' '}
-                    <Link
-                      to={"/signUp/student"}
-                      style={{
-                        marginLeft: "3px",
-                        textDecoration: "none",
-                        color: "blue",
-                        fontSize: 14,
-                      }}
-                    >
-                      Register here 
-                    </Link>
-                   
-                  </Form.Text>
-                  
-                </Form.Group>
+                  <Form.Group className="mb-3 d-flex align-items-center justify-content-center">
+                    <Form.Text className="text-muted">
+                      Don't have an account?{' '}
+                      <Link
+                        to={"/signUp/student"}
+                        style={{
+                          marginLeft: "3px",
+                          textDecoration: "none",
+                          color: "blue",
+                          fontSize: 14,
+                        }}
+                      >
+                        Register here
+                      </Link>
+                    </Form.Text>
+                  </Form.Group>
                 </span>
               </Form>
             </Col>

@@ -17,10 +17,10 @@ function RectorSignUp() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const {login,isTokenValid} = useAuth();
+  const {login} = useAuth(); //istokenvalid removed
 
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     if (!name || !gender || !block || !email || !password) {
       setErrorMessage("Please fill in all fields.");
@@ -35,20 +35,21 @@ function RectorSignUp() {
     }
 
     try {
-      backendapi.post("/register/rector", {
+     const response= await backendapi.post("/register/rector", {
         name,
         gender,
         block,
         email,
         password
-      }).then(response => {
-        const { jwtToken } = response.data;
-        if (jwtToken) {
-          login(jwtToken);
-          navigate("/rector/home");
-        }
       });
-    } catch (error) {
+      const { jwtToken } = response.data;
+     // console.log("jwtToken:",jwtToken);
+      if (jwtToken) {
+        login(jwtToken);
+        navigate("/rector/home");
+      }
+      }
+     catch (error) {
       console.error("Error registering rector:", error);
       setErrorMessage("Registration failed. Please try again.");
     }
