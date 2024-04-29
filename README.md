@@ -1,9 +1,9 @@
 # VJTI Hostel-Mate
 
 
-<p align="center">
+
    ![logo](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/707c6600-4c5a-4aa8-a2aa-b5f46d3863b9) 
-</p>
+
 
 
 VJTI Hostel-Mate is a web application designed to streamline communication between VJTI hostel students and rectors for addressing mess and hostel-related issues. It facilitates the submission of complaints by students and their resolution by rectors, ensuring a transparent and efficient process.
