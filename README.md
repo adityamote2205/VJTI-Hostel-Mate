@@ -32,7 +32,7 @@ VJTI Hostel-Mate is built using the PERN stack:
 - <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postman-icon.png" width="35">  **Postman** : For testing API endpoints and ensuring smooth communication between frontend and backend.
 - <img src="https://seeklogo.com/images/J/json-web-tokens-jwt-io-logo-C003DEC47A-seeklogo.com.png" width="35">  **JWT (JSON Web Tokens)** : For secure authentication by generating and verifying tokens between the frontend and backend.
 
-  ## Website Overview & Features
+## Website Overview & Features
 
 - **Student's Portal for Grievance resolution** :
     The student portal enables registered users to submit grievances concerning hostel and mess facilities, ensuring privacy by restricting hostel grievances to 
