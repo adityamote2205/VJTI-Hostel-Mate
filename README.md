@@ -114,6 +114,10 @@ VJTI Hostel-Mate is built using the PERN stack:
 ## Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests.
 
+## Contact
+
+For any inquiries or feedback, please contact us at [vjti.hostel.mate@gmail.com].
+
 
 
 
