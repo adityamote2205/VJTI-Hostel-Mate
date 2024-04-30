@@ -50,9 +50,9 @@ VJTI Hostel-Mate is built using the PERN stack:
 
    https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/3567de3b-a9f3-4472-83da-b565f88ffdee
 
+- **Reflection of completion of grievance on student's account** :
 
-
-https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c2be0891-0ad5-48cf-97dc-89f693bd6b0a
+  https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c2be0891-0ad5-48cf-97dc-89f693bd6b0a
 
 
 
