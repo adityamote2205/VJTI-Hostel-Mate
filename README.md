@@ -53,7 +53,7 @@ VJTI Hostel-Mate is built using the PERN stack:
   ![H4 Footer](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/1609c446-fa00-43a7-a0aa-2f7708527aa4)
 
 - **Student Hostel Grievance Page** :
-  - Here After completion of student's problem rector marks completed on student complaint from his side and at student page it get marked as completed and along 
+  - Here After completion of student's problem , rector marks completed on student complaint from his side and at student page it get marked as completed and along 
     with it date & time of completion is also visible to both.
 
   ![student hostel gri after completion](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/e8556362-f1f0-42e0-858d-9db6081396a5)
@@ -70,6 +70,13 @@ VJTI Hostel-Mate is built using the PERN stack:
    
   ![student profile 1](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/a95e98dc-1539-4a98-8534-8a2b2cb2a126)
   ![student profile 2](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/5796d38e-c6bb-414b-85a0-fc8f2d846705)
+
+  - Update Student Profile Page :
+
+    ![student edit profile ](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/eaeda7d4-1dfc-46b2-99a1-8b85b84dd7bc)
+
+ 
+    
 
 
 
