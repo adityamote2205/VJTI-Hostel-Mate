@@ -76,6 +76,10 @@ VJTI Hostel-Mate is built using the PERN stack:
 
      `cd [project_directory]`
 
+  3. **Install dependencies** :
+
+     `npm install`
+
 
 
 
