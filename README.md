@@ -81,6 +81,18 @@ VJTI Hostel-Mate is built using the PERN stack:
   ![rector home 2](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/b0505fde-dce1-47b3-9230-fa31882c0726)
   ![rector home 3](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/4f7d5213-ee32-4f54-8e78-086268899c95)
 
+- **Rector's Check Grievance Page** :
+
+   - Hostel :
+
+   ![rector hostel ](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/502e21d8-ebc8-48a6-94b0-c05316095362)
+
+   - Mess :
+
+  ![rector mess](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/ea96a40e-5ef9-458b-a483-4e9828245d9f)
+
+
+
 
 
  
