@@ -69,7 +69,8 @@ VJTI Hostel-Mate is built using the PERN stack:
   To run the Hostel Grievance Redressal System locally:
 
   1. **Clone the repository**
-     `git clone [repository_url]`
+     
+     `git clone https://github.com/adityamote2205/VJTI-Hostel-Mate.git`
 
 
 
