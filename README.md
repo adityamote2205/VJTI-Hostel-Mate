@@ -34,8 +34,11 @@ VJTI Hostel-Mate is built using the PERN stack:
 
   ## Website Overview & Features
 
-  
-
+  - Student's Portal for Grievance resolution :
+    The student portal enables registered users to submit grievances concerning hostel and mess facilities, ensuring privacy by restricting hostel grievances to 
+    respective block rectors and allowing all rectors to view mess grievances. Students can update their profiles, track grievance status including pending, 
+    completed, and total, and add descriptions and images as proof for each grievance. The system facilitates efficient grievance management by authorities, offers 
+    deletion options for students before completion, and ensures security, privacy, accessibility, and usability throughout the platform.
 https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c661ecb9-0265-48d7-9cfc-ce36a42fa8a8
 
 
