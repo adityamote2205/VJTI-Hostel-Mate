@@ -100,7 +100,11 @@ VJTI Hostel-Mate is built using the PERN stack:
 
 ## Future Improvements
 
-1. Edit Complaint Before Completion
+1. **Edit Complaint Before Completion** :
+
+   Allowing students to edit their complaints before rectors mark them as completed adds flexibility and ensures accurate information. Implement a feature where students can make changes to their complaint 
+   details, such as the description or attached images, until it's marked as resolved by the rector.
+
 
 
 
