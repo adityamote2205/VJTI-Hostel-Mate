@@ -87,11 +87,11 @@ VJTI Hostel-Mate is built using the PERN stack:
  5. **Run the application** :
      Start the frontend and backend servers in separate terminal windows.
 
-     In the frontend directory
+     - In the frontend directory
     
      `npm start`
 
-     In the backend directory
+     - In the backend directory
     
     `nodemon index.js`
 
