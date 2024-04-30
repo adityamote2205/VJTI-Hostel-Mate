@@ -73,7 +73,7 @@ VJTI Hostel-Mate is built using the PERN stack:
 
   - Update Student Profile Page :
 
-    ![student edit profile ](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/eaeda7d4-1dfc-46b2-99a1-8b85b84dd7bc)
+  ![student edit profile ](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/eaeda7d4-1dfc-46b2-99a1-8b85b84dd7bc)
 
 - **Rector's Dashboard** :
 
@@ -90,6 +90,31 @@ VJTI Hostel-Mate is built using the PERN stack:
    - Mess :
 
   ![rector mess](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/ea96a40e-5ef9-458b-a483-4e9828245d9f)
+
+- **Rector Profile Page** :
+
+  ![rector pro 1](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/539d4390-e033-443d-9401-cf5ab8c2e9ef)
+  ![rector pro 2](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/0e2a6511-7ba1-4e37-bbef-a02f41dfe7e7)
+
+  - Rector Profile Edit Page :
+
+  ![rector edit pro](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c4c1cd5d-722b-4135-ba9b-c0050f229e42)
+
+- I**About Us Page** :
+
+  ![About 1](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/23ba1966-587e-4601-bf1a-3fdda3ed45bb)
+  ![ab 2](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/e6965142-eda4-4080-9762-80605bb5af53)
+  ![ab3](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/6c3fcdfd-3c59-4e4b-8dfb-7406ff118d0d)
+  ![ab4](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c3ca1ee0-6882-4a47-8c39-3b8eed83e16e)
+  ![ab5](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/79eb776b-f0dd-45af-a976-266e2183545e)
+
+
+
+
+
+
+  
+
 
 
 
