@@ -98,6 +98,11 @@ VJTI Hostel-Mate is built using the PERN stack:
 
   6. **Visit `http://localhost:3000` to view the application in your browser**.
 
+## Future Improvements
+
+1. Edit Complaint Before Completion
+
+
 
 
 
