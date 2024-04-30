@@ -89,11 +89,11 @@ VJTI Hostel-Mate is built using the PERN stack:
 
      - In the frontend directory
     
-     `npm start`
+       `npm start`
 
      - In the backend directory
     
-    `nodemon index.js`
+       `nodemon index.js`
 
 
 
