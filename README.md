@@ -96,7 +96,7 @@ VJTI Hostel-Mate is built using the PERN stack:
     
        `nodemon index.js`
 
-  6. **Visit http://localhost:3000 to view the application in your browser**.
+  6. **Visit `http://localhost:3000` to view the application in your browser**.
 
 
 
