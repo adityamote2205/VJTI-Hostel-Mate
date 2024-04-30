@@ -85,6 +85,7 @@ VJTI Hostel-Mate is built using the PERN stack:
      - Change .env file according to your setup.
 
  5. **Run the application** :
+    
      Start the frontend and backend servers in separate terminal windows.
 
      - In the frontend directory
