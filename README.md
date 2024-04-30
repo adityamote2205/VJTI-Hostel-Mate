@@ -100,13 +100,25 @@ VJTI Hostel-Mate is built using the PERN stack:
 
   ![rector edit pro](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c4c1cd5d-722b-4135-ba9b-c0050f229e42)
 
-- I**About Us Page** :
+- **About Us Page** :
 
   ![About 1](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/23ba1966-587e-4601-bf1a-3fdda3ed45bb)
   ![ab 2](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/e6965142-eda4-4080-9762-80605bb5af53)
   ![ab3](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/6c3fcdfd-3c59-4e4b-8dfb-7406ff118d0d)
   ![ab4](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c3ca1ee0-6882-4a47-8c39-3b8eed83e16e)
   ![ab5](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/79eb776b-f0dd-45af-a976-266e2183545e)
+
+
+- **Contact Us Page** :
+
+  ![cu1](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/9e5a3f6d-8288-44dd-a3c1-2b538e6bbcad)
+  ![cu2](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/46296560-be86-4d82-b78c-49ccf3a0f099)
+  ![cu3](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/8219f55a-54e6-42d9-9a39-a3e2f00bf261)
+  ![cu4](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/8395fe87-ce87-48f7-b65f-2ad552e0db7f)
+  ![cu5](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/6604f5ae-4cf9-4971-b78c-9fcc7c451e31)
+
+
+
 
 
 
