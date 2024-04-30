@@ -40,7 +40,9 @@ VJTI Hostel-Mate is built using the PERN stack:
     completed, and total, and add descriptions and images as proof for each grievance. The system facilitates efficient grievance management by authorities, offers 
     deletion options for students before completion, and ensures security, privacy, accessibility, and usability throughout the platform.
     
-    https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c661ecb9-0265-48d7-9cfc-ce36a42fa8a8
+    https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/420b4105-8087-4dac-bc7e-c0b07372ea0c
+
+6a42fa8a8
 
 - **Rector's Dasboard** :
    The rector's dashboard facilitates signup/login for rectors, granting access to view grievances submitted by students within their block for hostel issues and all mess grievances, including photos submitted by 
