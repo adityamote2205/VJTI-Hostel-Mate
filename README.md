@@ -51,6 +51,8 @@ VJTI Hostel-Mate is built using the PERN stack:
    https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/3567de3b-a9f3-4472-83da-b565f88ffdee
 
 - **Reflection of completion of grievance on student's account** :
+   After review and resolution by the rector, when a grievance is marked as completed, the status is automatically updated on the student's account, indicating the date and time of completion. This seamless 
+   process ensures that students are promptly informed about the resolution of their grievances.
 
   https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c2be0891-0ad5-48cf-97dc-89f693bd6b0a
 
