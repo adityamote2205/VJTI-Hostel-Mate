@@ -64,6 +64,15 @@ VJTI Hostel-Mate is built using the PERN stack:
   ![student mess gri after completion](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/4411c4a7-c594-406e-ae86-5dbe4424356d)
   ![mess 2](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/ff253421-b24e-4055-ad7f-dac8fcbf82dc)
 
+- **Student Profile Page** :
+  - On student Profile Page Student gets all the information about his account and in addition he will get his total grievance count and no of grievance completed by rector in hostel and mess respectively 
+    under pie diagram.
+   
+  ![student profile 1](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/a95e98dc-1539-4a98-8534-8a2b2cb2a126)
+  
+
+
+
 
 
 
