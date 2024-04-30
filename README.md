@@ -116,7 +116,7 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## Contact
 
-For any inquiries or feedback, please contact us at [vjti.hostel.mate@gmail.com].
+For any inquiries or feedback, please contact us at `vjti.hostel.mate@gmail.com`.
 
 
 
