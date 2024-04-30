@@ -31,7 +31,7 @@ VJTI Hostel-Mate is built using the PERN stack:
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="40">  **Node.js** : A runtime environment for executing JavaScript code on the server side.
 - <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postman-icon.png" width="35">  **Postman** : For testing API endpoints and ensuring smooth communication between frontend and backend.
 - <img src="https://seeklogo.com/images/J/json-web-tokens-jwt-io-logo-C003DEC47A-seeklogo.com.png" width="35">  **JWT (JSON Web Tokens)** : For secure authentication by generating and verifying tokens between the frontend and backend.
-- <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" width="35">b **Bootstrap** : For streamlined and visually appealing frontend design, enhancing user experience and interface aesthetics.
+- <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" width="35">  **Bootstrap** : For streamlined and visually appealing frontend design, enhancing user experience and interface aesthetics.
 
 ## Website Overview & Features
 
