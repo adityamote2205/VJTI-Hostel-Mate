@@ -72,6 +72,10 @@ VJTI Hostel-Mate is built using the PERN stack:
      
      `git clone https://github.com/adityamote2205/VJTI-Hostel-Mate.git`
 
+  2. **Navigate to the project directory** :
+
+     `cd [project_directory]`
+
 
 
 
