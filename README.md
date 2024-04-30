@@ -79,7 +79,10 @@ VJTI Hostel-Mate is built using the PERN stack:
   3. **Install dependencies** :
 
      `npm install`
+  4. **Configure the database** :
 
+     - Set up PostgreSQL and update the database configuration.
+     - Change .env file according to your setup.
 
 
 
