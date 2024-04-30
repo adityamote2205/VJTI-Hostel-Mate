@@ -40,7 +40,7 @@ VJTI Hostel-Mate is built using the PERN stack:
     completed, and total, and add descriptions and images as proof for each grievance. The system facilitates efficient grievance management by authorities, offers 
     deletion options for students before completion, and ensures security, privacy, accessibility, and usability throughout the platform.
     
-https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c661ecb9-0265-48d7-9cfc-ce36a42fa8a8
+    https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c661ecb9-0265-48d7-9cfc-ce36a42fa8a8
 
 
 
