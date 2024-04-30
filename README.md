@@ -105,6 +105,12 @@ VJTI Hostel-Mate is built using the PERN stack:
    Allowing students to edit their complaints before rectors mark them as completed adds flexibility and ensures accurate information. Implement a feature where students can make changes to their complaint 
    details, such as the description or attached images, until it's marked as resolved by the rector.
 
+- **Notification System** :
+
+  The system notifies rectors instantly upon new complaints within their hostel blocks, facilitating swift response. Additionally, students receive notifications upon completion of their complaints, ensuring 
+  they stay updated on grievance status for effective communication and resolution.
+
+
 
 
 
