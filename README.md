@@ -69,7 +69,8 @@ VJTI Hostel-Mate is built using the PERN stack:
     under pie diagram.
    
   ![student profile 1](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/a95e98dc-1539-4a98-8534-8a2b2cb2a126)
-  
+  ![student profile 2](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/c1ab4015-75b9-47e5-a90b-2c4523ec5fa9)
+
 
 
 
