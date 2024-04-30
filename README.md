@@ -59,6 +59,7 @@ VJTI Hostel-Mate is built using the PERN stack:
 ## Schema Diagram 
  - The schema consists of four tables: Student, Rector, Hostel Complaint, and Mess Complaint. Both complaint tables have a foreign key `student_id` referencing the Student table. This setup allows efficient 
    tracking of grievances submitted by students, while the Rector table stores information about rectors overseeing the grievances.
+   
    ![ER Diagram Final VJTI Hostel Mate](https://github.com/adityamote2205/VJTI-Hostel-Mate/assets/108695859/747e7215-f47d-4f61-a5bf-247944180b5a)
 
 
